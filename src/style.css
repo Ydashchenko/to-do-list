@@ -1,7 +1,14 @@
+@font-face {
+    font-family: 'Horizon';
+    src: url('./fonts/HorizonRounded.otf') format('opentype');
+}
+  
 * {
+    font-family: 'Horizon', Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 
 body {
     height: 100vh;
