@@ -16,25 +16,30 @@
                 <button>Today <p class="counter"></p></button>
                 <button>This week <p class="counter"></p></button>
             </div>
-            <div>
-                <h3>Projects</h3>
-                <div class="project-list">
+            <div id="project-div">
+                <h3>Projects <p class="counter"></p></h3>
+                <div id="project-list">
                     <div class="project">
-                        <h4>Gym</h4>
+                        <h4>Gym <p class="counter"></p></h4>
+                        <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
+                        <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
+                    </div>
+                    <div class="project">
+                        <h4>Chores <p class="counter"></p></h4>
                         <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
                         <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
                     </div>
                 </div>
-                <button>Add project</button>
+                <button class="add-button">Add Project</button>
             </div>
-            <div>
+            <div id="note-div">
                 <h3>Notes</h3>
-                <button>Add note</button>
+                <button class="add-button">Add Note</button>
             </div>
         </nav>
-        <div>
-            <h2>All tasks</h2>
+        <div id="main-container">
             <div id="content">
+                <h2>All tasks</h2>
                 <div id="task-list">
                     <div class="task">
                         <input type="checkbox">
@@ -43,8 +48,15 @@
                         <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
                         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
                     </div>
+                    <div class="task">
+                        <input type="checkbox">
+                        <h4>See friends</h4>
+                        <p>Nov 4th</p>
+                        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
+                        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
+                    </div>
                 </div>
-                <button>Add task</button>
+                <button class="add-button">Add Task</button>
             </div>
         </div>
     </main>
