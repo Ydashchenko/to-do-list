@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <header><img sc="https://static.vecteezy.com/system/resources/previews/010/147/759/non_2x/tick-icon-accept-approve-sign-design-free-png.png" alt="Todo list logo"> Todo list</header>
+    <main>
+        <nav>
+            <div>
+                <button>All tasks <p class="counter"></p></button>
+                <button>Today <p class="counter"></p></button>
+                <button>This week <p class="counter"></p></button>
+            </div>
+            <div>
+                <h3>Projects</h3>
+                <div class="project-list">
+                    <div class="project">
+                        <h4>Gym</h4>
+                        <img class="edit-project" src="" alt="Edit logo">
+                        <img class="remove-project" src="" alt="Delete logo">
+                    </div>
+                </div>
+                <button>Add project</button>
+            </div>
+            <div>
+                <h3>Notes</h3>
+                <button>Add note</button>
+            </div>
+        </nav>
+        <div>
+            <h2>All tasks</h2>
+            <div id="content">
+                <div id="task-list">
+                    <div class="task">
+                        <input type="checkbox">
+                        <h4>Wash the dishes</h4>
+                        <p>Feb 27th</p>
+                        <img class="edit-task" src="" alt="Edit logo">
+                        <img class="remove-task" src="" alt="Delete logo">
+                    </div>
+                </div>
+                <button>Add task</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Copyright ©
+        <script>
+            document.write(new Date().getFullYear())
+        </script>
+        <a href="https://github.com/Ydashchenko" target="_blank">Yevhenii Dashchenko</a>
+        <a href="https://github.com/Ydashchenko" target="_blank"><img src="images/github-mark.svg" alt="" class="icon"></a>
+    </footer>
+</body>
+</html>
