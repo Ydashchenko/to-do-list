@@ -14,21 +14,45 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    
 }
 
 header {
+    background-color: darkslateblue;
+    color: white;
+    padding-left: 30px;
     display: flex;
-    gap: 20px;
-    font-size: 50px;
+    gap: 30px;
+    font-size: 35px;
     align-items: center;
-    height: 150px;
+    height: 120px;
 }
 
 #todo-logo {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
 }
 
 main img {
     width: 30px;
+}
+
+footer  {
+    background-color: darkslateblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer img {
+    width: 20px;
+    height: 20px;
 }
