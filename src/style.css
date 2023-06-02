@@ -54,7 +54,7 @@ nav {
     padding: 50px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 }
 
 #first, #project-div, #note-div {
@@ -64,10 +64,41 @@ nav {
     gap: 20px;
 }
 
+#first {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+#first img {
+    width: 25px;
+}
+
+#first button {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .project {
     display: grid;
-    grid-template-columns: 150px auto auto;
-    gap: 10px;
+    grid-template-columns: auto 3fr auto auto 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.project-logo {
+    width: 25px;
+}
+
+.edit-project, .remove-project {
+    width: 20px;
+}
+
+#project-header, #notes-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
 }
 
 #project-list {
@@ -76,10 +107,16 @@ nav {
     gap: 10px;
 }
 
+#project-div, #note-div {
+    display: grid;
+}
+
 .task {
     display: grid;
     grid-template-columns: auto 1fr repeat(3, auto);
     gap: 20px;
+    align-items: center;
+    
 }
 
 #task-list {
@@ -139,6 +176,33 @@ h3, h2 {
 
 .add-button {
     text-align: start;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+}
+
+.add-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox {
+    accent-color:  darkslateblue;
+}
+
+.counter {
+    font-size: 20px;
+    font-weight: 600;
+    color: darkslateblue;
+    text-align: end;
+    align-self: center;
 }
 
 
