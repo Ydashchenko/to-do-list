@@ -195,7 +195,7 @@ h3, h2 {
 
 .add-button:hover img, .edit-project:hover,
  .remove-project:hover, .edit-task:hover, .remove-task:hover{
-    animation: rotation 2s infinite linear;
+    animation: rotation 1s infinite linear;
     transition: 0.2s;
 }
 
@@ -238,5 +238,79 @@ h3, h2 {
     align-self: center;
 }
 
+#add-task-form {
+    background-color: white;
+    padding: 20px;
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+#add-task-form * {
+    font-size: 20px;
+    padding: 5px 20px;
+}
+
+#input-title, #input-description {
+    border: 0px;
+}
+
+#input-title:focus, #input-description:focus {
+    outline: none;
+}
+
+#add-task-form input {
+    background-color: white;
+}
 
 
+#priority {
+    display: flex;
+    gap: 10px;
+    justify-content: stretch;
+}
+
+#low {
+    border: 2px green solid;
+    color: green;
+}
+
+#low:hover {
+    background-color: green;
+    color: white;
+}
+
+#low:focus {
+    background-color: green;
+    color: white;
+}
+
+#medium {
+    border: 2px rgb(255, 208, 0) solid;
+    color: rgb(255, 208, 0);
+}
+
+#medium:hover {
+    background-color: rgb(255, 208, 0);
+    color: white;
+}
+
+#medium:focus {
+    background-color: rgb(255, 208, 0);;
+    color: white;
+}
+
+#high {
+    border: 2px red solid;
+    color: red;
+}
+
+#high:hover {
+    background-color: red;
+    color: white;
+}
+
+#high:focus {
+    background-color: red;
+    color: white;
+}

@@ -15,25 +15,26 @@
                 <div id="all-tasks">
                     <img src="../src/images/all-tasks.png" alt="All tasks logo">
                     <h4>All tasks</h4>
-                    <p class="counter">34</p>
+                    <p class="counter"></p>
                 </div>
                 <div id="today">
                     <img src="../src/images/day-logo.png" alt="Calendar logo">
                     <h4>Today</h4>
-                    <p class="counter">5</p>
+                    <p class="counter"></p>
                 </div>
                 <div id="this-week">
                     <img src="../src/images/calendar-logo.png" alt="Calendar logo">
                     <h4>This week</h4>
-                    <p class="counter">29</p>
+                    <p class="counter"></p>
                 </div>
             </div>
             <div id="project-div">
                 <div id="project-header">
                     <h3>Projects</h3>
-                    <p class="counter">2</p>
+                    <p class="counter"></p>
                 </div>
                 <div id="project-list">
+                    <!--
                     <div class="project">
                         <img class="project-logo" src="../src/images/project-logo.png" alt="Project Logo">
                         <h4>Gym</h4>
@@ -48,21 +49,23 @@
                         <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
                         <p class="counter">20</p>
                     </div>
+                    -->
                 </div>
-                <button class="add-button"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Project</button>
+                <button class="add-button" id="add-project"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Project</button>
             </div>
             <div id="note-div">
                 <div id="notes-header">
                     <h3>Notes</h3>
-                    <p class="counter">20</p>
+                    <p class="counter"></p>
                 </div>
-                <button class="add-button"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Note</button>
+                <button class="add-button" id="add-note"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Note</button>
             </div>
         </nav>
         <div id="main-container">
             <div id="content">
                 <h2>All tasks</h2>
                 <div id="task-list">
+                <!--
                     <div class="task">
                         <input type="checkbox" class="checkbox">
                         <h4>Wash the dishes</h4>
@@ -78,8 +81,21 @@
                         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
                     </div>
                 </div>
-                <button class="add-button"> <img src="../src/images/add-logo.png" alt="Add Logo"> Add Task</button>
-                
+                -->
+                <button class="add-button" id="add-task"> <img src="../src/images/add-logo.png" alt="Add Logo"> Add Task</button>
+
+                <form id="add-task-form">
+                    <h4>New task:</h4>
+                    <input id="input-title" type="text" placeholder='Title:' required>
+                    <input id="input-description" type="text" placeholder="Description:">
+                    <input id='input-date' type="date">
+                    <p id="priority">
+                        <button id="low">Low</button>
+                        <button id="medium">Medium</button>
+                        <button id="high">High</button>
+                    </p>
+                    <button id="submit-add-task" type="submit" class="add-button"><img src="../src/images/add-logo.png" alt="Add Logo">Add To Tasks</button>
+                </form>
             </div>
         </div>
     </main>
