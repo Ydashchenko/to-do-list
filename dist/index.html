@@ -62,10 +62,11 @@
             </div>
         </nav>
         <div id="main-container">
+            <!--
             <div id="content">
                 <h2>All tasks</h2>
                 <div id="task-list">
-                <!--
+                
                     <div class="task">
                         <input type="checkbox" class="checkbox">
                         <h4>Wash the dishes</h4>
@@ -81,22 +82,23 @@
                         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
                     </div>
                 </div>
-                -->
+                
                 <button class="add-button" id="add-task"> <img src="../src/images/add-logo.png" alt="Add Logo"> Add Task</button>
 
-                <form id="add-task-form">
+                <div id="add-task-form">
                     <h4>New task:</h4>
                     <input id="input-title" type="text" placeholder='Title:' required>
-                    <input id="input-description" type="text" placeholder="Description:">
-                    <input id='input-date' type="date">
+                    <input id="input-description" type="text" placeholder="Description:" required>
+                    <input id='input-date' type="date" required>
                     <p id="priority">
-                        <button id="low">Low</button>
-                        <button id="medium">Medium</button>
-                        <button id="high">High</button>
+                        <label id="low">Low</label>
+                        <label id="medium">Medium</label>
+                        <label id="high">High</label>
                     </p>
                     <button id="submit-add-task" type="submit" class="add-button"><img src="../src/images/add-logo.png" alt="Add Logo">Add To Tasks</button>
-                </form>
+                </div>
             </div>
+            -->
         </div>
     </main>
     <footer>

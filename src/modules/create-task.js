@@ -1,8 +1,9 @@
-export function createTask(title, description, dueDate, priority) {
+export function createTask(title, description, dueDate, priority, ifChecked) {
     return {
         title: title,
         description: description,
         dueDate: dueDate,
-        priority: priority
+        priority: priority,
+        ifChecked: ifChecked
     }
 }

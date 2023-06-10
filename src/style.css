@@ -314,3 +314,7 @@ h3, h2 {
     background-color: red;
     color: white;
 }
+
+label {
+    font-weight: 500;
+}
