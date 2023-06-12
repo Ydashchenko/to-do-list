@@ -1,8 +1,7 @@
 export function createAllTasksTab() {
     const main = document.getElementById('main-container')
 
-    main.innerHTML = `
-    <div id="content">
+    main.innerHTML = `<div id="content">
     <h2>All tasks</h2>
     <div id="task-list">
     
@@ -36,6 +35,5 @@ export function createAllTasksTab() {
         </p>
         <button id="submit-add-task" type="submit" class="add-button"><img src="../src/images/add-logo.png" alt="Add Logo">Add To Tasks</button>
     </div>
-</div>
-    `
+</div>`
 }
