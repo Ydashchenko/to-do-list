@@ -1,9 +1,10 @@
 import { createTask } from "./create-task";
+import { loadDefaultTasks } from "./load-default-tasks";
 
 export function addNewTaskToArray() {
-    const title = document.getElementById('input-title')
-    const desk = document.getElementById('input-description')
-    const date = document.getElementById('input-date')
-    const priority = document.getElementById('priority')
-    let task = createTask(title.innerHTML, desk.innerHTML, date.value, )
+    const inputTitle = document.getElementById('input-title')
+    const inputDescription = document.getElementById('input-description')
+    const inputDate = document.getElementById('input-date')
+    
+
 }

@@ -259,6 +259,10 @@ h3, h2 {
     outline: none;
 }
 
+#input-date {
+    border-radius: 5px;
+}
+
 #add-task-form input {
     background-color: white;
 }
@@ -280,11 +284,6 @@ h3, h2 {
     color: white;
 }
 
-#low:focus {
-    background-color: green;
-    color: white;
-}
-
 #medium {
     border: 2px rgb(255, 208, 0) solid;
     color: rgb(255, 208, 0);
@@ -292,11 +291,6 @@ h3, h2 {
 
 #medium:hover {
     background-color: rgb(255, 208, 0);
-    color: white;
-}
-
-#medium:focus {
-    background-color: rgb(255, 208, 0);;
     color: white;
 }
 
@@ -310,11 +304,25 @@ h3, h2 {
     color: white;
 }
 
-#high:focus {
-    background-color: red;
+#priority label {
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+#lowClicked {
+    border: 2px green solid;
+    background-color: green;
     color: white;
 }
 
-label {
-    font-weight: 500;
+#mediumClicked {
+    border: 2px rgb(255, 208, 0) solid;
+    background-color: rgb(255, 208, 0);
+    color: white;
+}
+
+#highClicked {
+    border: 2px red solid;
+    background-color: red;
+    color: white;
 }

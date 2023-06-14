@@ -5,20 +5,6 @@ export function createAllTasksTab() {
     <h2>All tasks</h2>
     <div id="task-list">
     
-        <div class="task">
-            <input type="checkbox" class="checkbox">
-            <h4>Wash the dishes</h4>
-            <p>Feb 27th</p>
-            <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
-            <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
-        </div>
-        <div class="task">
-            <input type="checkbox" class="checkbox">
-            <h4>See friends</h4>
-            <p>Nov 4th</p>
-            <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
-            <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
-        </div>
     </div>
     
     <button class="add-button" id="add-task"> <img src="../src/images/add-logo.png" alt="Add Logo"> Add Task</button>
