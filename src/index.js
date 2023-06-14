@@ -4,6 +4,7 @@ import { createAllTasksTab } from './modules/all-tasks-tab';
 import { createTodayTab } from './modules/today-tab';
 import { createThisWeekTab } from './modules/this-week-tab';
 import { loadDefaultTasks } from './modules/load-default-tasks';
+import { choosePriority } from './modules/choose-priority';
 
 createAllTasksTab()
 loadDefaultTasks()
@@ -19,4 +20,6 @@ todayTab.addEventListener('click', createTodayTab)
 thisWeekTab.addEventListener('click', createThisWeekTab)
 
 addTaskBtn.addEventListener('click', createAddTaskForm)
+
+choosePriority()
 
