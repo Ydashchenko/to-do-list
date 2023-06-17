@@ -304,25 +304,7 @@ h3, h2 {
     color: white;
 }
 
-#priority label {
+#priority option {
     font-weight: 500;
     border-radius: 5px;
-}
-
-#lowClicked {
-    border: 2px green solid;
-    background-color: green;
-    color: white;
-}
-
-#mediumClicked {
-    border: 2px rgb(255, 208, 0) solid;
-    background-color: rgb(255, 208, 0);
-    color: white;
-}
-
-#highClicked {
-    border: 2px red solid;
-    background-color: red;
-    color: white;
 }

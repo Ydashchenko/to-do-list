@@ -1,6 +1,6 @@
 export const blankProjectLoad = () => {
     let projectsArray = []
-    let projectTitle = 'Default project'
+    let projectTitle = 'Chores'
     projectsArray.push({ projectTitle })
     console.log(projectsArray)
     return { projectsArray, projectTitle }
