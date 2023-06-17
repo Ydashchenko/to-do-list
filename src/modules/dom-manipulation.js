@@ -19,9 +19,11 @@ export function displayTheForm() {
     document.getElementById('add-task').style.display = 'none'
 }
 
-export function clearForm() {
+export function resetForm() {
     document.getElementById('input-title').value = ''
     document.getElementById('input-description').value = ''
     document.getElementById('input-date').value = ''
+    document.getElementById('add-task').style.display = 'flex'
+    document.getElementById('add-task-form').style.display = 'none'
 }
 

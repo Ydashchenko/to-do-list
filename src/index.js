@@ -1,6 +1,5 @@
 import { blankProjectLoad } from './modules/blankProjectLoad';
-import { createTodo } from './modules/create-todo';
-import { blankToDosLoad } from './modules/blankToDoLoad';
+import { createTodo, blankToDosLoad } from './modules/create-todo';
 import { displayDefaultProject, displayTheForm } from './modules/dom-manipulation';
 import './style.css';
 
