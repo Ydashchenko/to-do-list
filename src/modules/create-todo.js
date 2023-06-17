@@ -1,8 +1,6 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
 import { clearForm } from "./dom-manipulation"
 
-let toDoArray = []
-
 export function factoryToDo(title, description, dueDate, priority, done) {
     return {
         title, description, dueDate, priority, done
@@ -15,6 +13,8 @@ export const createTodo = () => {
     let dueDate = document.getElementById('input-date').value
     let priority = document.getElementById('input-priority').value
     let done = false
+
+
 
     if (parseISO(dueDate) < startOfToday()) {
         alert('You have entered a date that has already passed!')

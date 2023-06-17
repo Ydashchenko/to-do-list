@@ -1,10 +1,12 @@
 import { blankProjectLoad } from './modules/blankProjectLoad';
-import { createTodo, factoryToDo } from './modules/create-todo';
+import { createTodo } from './modules/create-todo';
+import { blankToDosLoad } from './modules/blankToDoLoad';
 import { displayDefaultProject, displayTheForm } from './modules/dom-manipulation';
 import './style.css';
 
 blankProjectLoad()
 displayDefaultProject()
+blankToDosLoad()
 
 let clickEventsModule = (function() {
     const displayTheFormButton = document.getElementById('add-task')
@@ -15,5 +17,3 @@ let clickEventsModule = (function() {
 })()
 
 
-const myToDo = factoryToDo('Work', 'Go to work', 'Feb 27th', 'high', false)
-console.log('My todo: ', myToDo)
