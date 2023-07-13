@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { displayToDo, resetForm, updateAll } from "./dom-manipulation"
+import { displayToDo, resetForm, updateAll, updateCounterForEachProject } from "./dom-manipulation"
 
 let toDoArray = []
 
@@ -23,7 +23,7 @@ export const createTodo = () => {
     let description = document.getElementById('input-description').value
     let dueDate = document.getElementById('input-date').value
     let priority = document.getElementById('input-priority').value
-    let project = document.getElementById('input-project')
+    let project = document.getElementById('Project').value
     let done = false
 
     let newToDo = factoryToDo(title, description, dueDate, priority, project, false)
