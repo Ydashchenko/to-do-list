@@ -1,20 +1,18 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { resetForm } from "./dom-manipulation"
-import { saveToDoToLocal } from "./manage-local-storage.js"
+import { displayToDo, resetForm } from "./dom-manipulation"
 
 let toDoArray = []
 
-
-export function factoryToDo(title, description, dueDate, priority, done) {
+export function factoryToDo(title, description, dueDate, priority, project, done) {
     return {
-        title, description, dueDate, priority, done
+        title, description, dueDate, priority, project, done
     }
 }
 
 export function blankToDosLoad() {
-    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', 'Feb 27th', 'high', false)
+    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', 'Feb 27th', 'high', 'Chores', false)
     toDoArray.push(myToDo1)
-    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', 'June 2nd', false)
+    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', 'June 2nd', '', false)
     toDoArray.push(myToDo2)
     console.log(toDoArray)
     return { toDoArray, myToDo1, myToDo2 }
@@ -25,9 +23,10 @@ export const createTodo = () => {
     let description = document.getElementById('input-description').value
     let dueDate = document.getElementById('input-date').value
     let priority = document.getElementById('input-priority').value
+    let project = document.getElementById('input-project').value
     let done = false
 
-    let newToDo = factoryToDo(title, description, dueDate, priority, false)
+    let newToDo = factoryToDo(title, description, dueDate, priority, project, false)
 
     if (title == "" || description == "" || dueDate == "") {
         alert("All the fields are required, please try again!")
@@ -43,10 +42,11 @@ export const createTodo = () => {
 
     toDoArray.push(newToDo)
     console.log(toDoArray)
-
-    saveToDoToLocal({title, description, dueDate, priority, done})
-
+    
     resetForm()
+    displayToDo()
 
-    return { title, description, dueDate, priority, done, toDoArray }
+    return { title, description, dueDate, priority, project, done, toDoArray }
 }
+
+export { toDoArray }
