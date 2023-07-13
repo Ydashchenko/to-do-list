@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { displayToDo, resetForm } from "./dom-manipulation"
+import { displayToDo, resetForm, updateAll } from "./dom-manipulation"
 
 let toDoArray = []
 
@@ -12,7 +12,7 @@ export function factoryToDo(title, description, dueDate, priority, project, done
 export function blankToDosLoad() {
     const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', 'Feb 27th', 'high', 'Chores', false)
     toDoArray.push(myToDo1)
-    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', 'June 2nd', '', false)
+    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', 'June 2nd', 'medium' , '', false)
     toDoArray.push(myToDo2)
     console.log(toDoArray)
     return { toDoArray, myToDo1, myToDo2 }
@@ -23,7 +23,7 @@ export const createTodo = () => {
     let description = document.getElementById('input-description').value
     let dueDate = document.getElementById('input-date').value
     let priority = document.getElementById('input-priority').value
-    let project = document.getElementById('input-project').value
+    let project = document.getElementById('input-project')
     let done = false
 
     let newToDo = factoryToDo(title, description, dueDate, priority, project, false)
@@ -44,7 +44,8 @@ export const createTodo = () => {
     console.log(toDoArray)
     
     resetForm()
-    displayToDo()
+    updateCounterForEachProject()
+    updateAll()
 
     return { title, description, dueDate, priority, project, done, toDoArray }
 }

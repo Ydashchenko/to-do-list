@@ -1,4 +1,5 @@
 const path = require('path');
+const { projectsArray } = require('./src/modules/blankProjectLoad');
 
 module.exports = {
   mode: 'production',

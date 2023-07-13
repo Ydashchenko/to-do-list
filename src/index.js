@@ -1,13 +1,13 @@
 import { blankProjectLoad } from './modules/blankProjectLoad';
 import { blankToDosLoad } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import { displayDefaultProject, displayTheForm, displayToDo} from './modules/dom-manipulation';
+import {  displayTheForm, updateAll, updateCounterForEachProject} from './modules/dom-manipulation';
 import './style.css';
 
 blankProjectLoad()
-displayDefaultProject()
 blankToDosLoad()
-displayToDo()
+updateCounterForEachProject()
+updateAll()
 
 let clickEventsModule = (function() {
     const displayTheFormButton = document.getElementById('add-task')

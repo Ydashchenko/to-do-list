@@ -15,23 +15,23 @@
                 <div id="all-tasks">
                     <img src="../src/images/all-tasks.png" alt="All tasks logo">
                     <h4>All tasks</h4>
-                    <p class="counter"></p>
+                    <p class="counter" id="all-tasks-counter"></p>
                 </div>
                 <div id="today">
                     <img src="../src/images/day-logo.png" alt="Calendar logo">
                     <h4>Today</h4>
-                    <p class="counter"></p>
+                    <p class="counter" id="today-counter"></p>
                 </div>
                 <div id="this-week">
                     <img src="../src/images/calendar-logo.png" alt="Calendar logo">
                     <h4>This week</h4>
-                    <p class="counter"></p>
+                    <p class="counter" id="this-week-counter"></p>
                 </div>
             </div>
             <div id="project-div">
                 <div id="project-header">
                     <h3>Projects</h3>
-                    <p class="counter"></p>
+                    <p class="counter" id="project-counter"></p>
                 </div>
                 <div id="project-list">
                     <!--
@@ -56,7 +56,7 @@
             <div id="note-div">
                 <div id="notes-header">
                     <h3>Notes</h3>
-                    <p class="counter"></p>
+                    <p class="counter" id="note-counter"></p>
                 </div>
                 <button class="add-button" id="add-note"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Note</button>
             </div>
@@ -89,8 +89,10 @@
                 <form id="add-task-form" method="post">
                     <h4>New task:</h4>
                     <select name="Project" id="Project">
+                        <!--
                         <option value="default-project">Chores</option>
                         <option value="create-new-project">Create New Project</option>
+                        -->
                     </select>
                     <input id="input-title" type="text" placeholder='Title:' required>
                     <input id="input-description" type="text" placeholder="Description:" required>
