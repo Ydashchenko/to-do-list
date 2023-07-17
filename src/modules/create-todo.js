@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { displayToDo, resetForm, updateAll, updateCounterForEachProject } from "./dom-manipulation"
+import { displayToDo, resetToDoForm, updateAll, updateCounterForEachProject } from "./dom-manipulation"
 
 let toDoArray = []
 
@@ -10,9 +10,9 @@ export function factoryToDo(title, description, dueDate, priority, project, done
 }
 
 export function blankToDosLoad() {
-    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', 'Feb 27th', 'high', 'Chores', false)
+    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', '2023-07-30', 'high', 'Chores', false)
     toDoArray.push(myToDo1)
-    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', 'June 2nd', 'medium' , '', false)
+    const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', '2023-12-14', 'medium' , '', false)
     toDoArray.push(myToDo2)
     console.log(toDoArray)
     return { toDoArray, myToDo1, myToDo2 }
@@ -43,7 +43,7 @@ export const createTodo = () => {
     toDoArray.push(newToDo)
     console.log(toDoArray)
     
-    resetForm()
+    resetToDoForm()
     updateCounterForEachProject()
     updateAll()
 

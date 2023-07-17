@@ -1,7 +1,7 @@
-import { blankProjectLoad } from './modules/blankProjectLoad';
+import { blankProjectLoad, createProject } from './modules/create-projects';
 import { blankToDosLoad } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import {  displayTheForm, updateAll, updateCounterForEachProject} from './modules/dom-manipulation';
+import {  displayTheToDoForm, displayTheProjectForm, updateAll, updateCounterForEachProject, allTasksTab, todayTab, allTasksTab, todayTab } from './modules/dom-manipulation';
 import './style.css';
 
 blankProjectLoad()
@@ -10,11 +10,23 @@ updateCounterForEachProject()
 updateAll()
 
 let clickEventsModule = (function() {
-    const displayTheFormButton = document.getElementById('add-task')
-    displayTheFormButton.addEventListener('click', displayTheForm)
+    const displayTheToDoFormButton = document.getElementById('add-task')
+    displayTheToDoFormButton.addEventListener('click', displayTheToDoForm)
 
-    const submitButton = document.getElementById('submit-add-task')
-    submitButton.addEventListener('click', createTodo)
+    const submitButtonAddTask = document.getElementById('submit-add-task')
+    submitButtonAddTask.addEventListener('click', createTodo)
+
+    const displayTheProjectFormButton = document.getElementById('add-project')
+    displayTheProjectFormButton.addEventListener('click', displayTheProjectForm)
+
+    const submitButtonAddProject = document.getElementById('submit-add-project')
+    submitButtonAddProject.addEventListener('click', createProject)
+
+    const allTasksTabButton = document.getElementById('all-tasks')
+    allTasksTabButton.addEventListener('click', allTasksTab)
+
+    const todayTabButton = document.getElementById('today')
+    todayTabButton.addEventListener('click', todayTab)
 })()
 
 
