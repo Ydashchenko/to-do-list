@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { displayToDo, resetProjectForm, updateAll, updateCounterForEachProject } from "./dom-manipulation"
+import { displayToDo, resetProjectForm, updateCounterForEachProject, updateProjectData } from "./dom-manipulation"
 
 let projectsArray = []
 
@@ -38,7 +38,7 @@ export const createProject = () => {
     
     resetProjectForm()
     updateCounterForEachProject()
-    updateAll()
+    updateProjectData()
 
     return { projectTitle, tasksInProject, projectsArray }
 

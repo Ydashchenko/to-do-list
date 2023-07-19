@@ -1,21 +1,8 @@
 import { blankProjectLoad} from "./create-projects";
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
+import { currentTab } from "..";
 
-
-/* export function displayDefaultProject() {
-    const projectList = document.getElementById('project-list')
-    const defaultProject = document.createElement('div')
-    defaultProject.innerHTML = `
-    <img class="project-logo" src="../src/images/project-logo.png" alt="Project Logo">
-    <h4>Chores</h4>
-    <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
-    <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
-    <p class="counter">1</p>
-    `
-    projectList.appendChild(defaultProject)
-    defaultProject.className = 'project'
-} */
 
 export function displayTheToDoForm() {
     document.getElementById('add-task-form').style.display = 'grid'
@@ -62,8 +49,12 @@ export function updateAllTasksTab() {
     for (let d in toDoArray) {
         let temp = document.createElement('div')
         temp.classList.add('task')
+        let tempIfChecked = ''
+        if (toDoArray[d].done) {
+            tempIfChecked = 'checked'
+        }
         temp.innerHTML = `
-        <input type="checkbox" class="checkbox">
+        <input type="checkbox" class="checkbox" ${tempIfChecked}>
         <h4>${toDoArray[d].title}</h4>
         <p>${toDoArray[d].dueDate}</p>
         <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
@@ -85,6 +76,10 @@ export function updateTodayTab() {
     todayTasks.innerHTML = ''
     for (let d in toDoArray) {
         const date = new Date();
+        let tempIfChecked = ''
+        if (toDoArray[d].done) {
+            tempIfChecked = 'checked'
+        }
         let currentDay = String(date.getDate()).padStart(2, '0');
         let currentMonth = String(date.getMonth()+1).padStart(2, "0");
         let currentYear = date.getFullYear();
@@ -94,7 +89,7 @@ export function updateTodayTab() {
             let temp = document.createElement('div')
             temp.classList.add('task')
             temp.innerHTML = `
-            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox" ${tempIfChecked}>
             <h4>${toDoArray[d].title}</h4>
             <p>${toDoArray[d].dueDate}</p>
             <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
@@ -116,6 +111,12 @@ export function updateThisWeekTab() {
     thisWeekTasks.innerHTML = ''
 
     for (let d in toDoArray) {
+
+        let tempIfChecked = ''
+        if (toDoArray[d].done) {
+            tempIfChecked = 'checked'
+        }
+
         Date.prototype.GetFirstDayOfWeek = function() {
             return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
         }
@@ -135,7 +136,7 @@ export function updateThisWeekTab() {
             let temp = document.createElement('div')
             temp.classList.add('task')
             temp.innerHTML = `
-            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox" ${tempIfChecked}>
             <h4>${toDoArray[d].title}</h4>
             <p>${toDoArray[d].dueDate}</p>
             <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
@@ -147,7 +148,7 @@ export function updateThisWeekTab() {
     }
 }
 
-export function updateAll() {
+export function updateProjectData() {
     // Update all projects in project list
     let allProjects = document.getElementById('project-list')
     allProjects.innerHTML = ''
@@ -202,23 +203,23 @@ export function updateCounters() {
 export function allTasksTab() {
     const h2 = document.getElementById('content-h2')
     h2.innerHTML = 'All tasks'
-    
+    currentTab = 'All tasks'
     updateAllTasksTab()
-    updateAll()
+    updateProjectData()
 }
 
 export function todayTab() {
     const h2 = document.getElementById('content-h2')
     h2.innerHTML = 'Today'
-
+    currentTab = 'Today'
     updateTodayTab()
-    updateAll()
+    updateProjectData()
 }
 
 export function thisWeekTab() {
     const h2 = document.getElementById('content-h2')
     h2.innerHTML = 'This week'
-
+    currentTab = 'This week'
     updateThisWeekTab()
-    updateAll()
+    updateProjectData()
 }

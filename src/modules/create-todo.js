@@ -1,5 +1,6 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { updateAllTasksTab, updateTodayTab, updateThisWeekTab, resetToDoForm, updateAll, updateCounterForEachProject } from "./dom-manipulation"
+import { resetToDoForm, updateProjectData, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab } from "./dom-manipulation"
+import { currentTab } from ".."
 
 let toDoArray = []
 
@@ -10,7 +11,7 @@ export function factoryToDo(title, description, dueDate, priority, project, done
 }
 
 export function blankToDosLoad() {
-    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', '2023-07-30', 'high', 'Chores', false)
+    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', '2023-07-30', 'high', 'Chores', true)
     toDoArray.push(myToDo1)
     const myToDo2 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', '2023-12-14', 'medium' , '', false)
     toDoArray.push(myToDo2)
@@ -43,19 +44,16 @@ export const createTodo = () => {
     toDoArray.push(newToDo)
     console.log(toDoArray)
     
-    resetToDoForm()
     updateCounterForEachProject()
-
-    let h2 = document.getElementById('content-h2')
-    switch (h2.innerHTML) {
-        case 'All tasks':
-            updateAllTasksTab()
-        case 'Today':
-            updateTodayTab()
-        case 'This week':
-            updateThisWeekTab()
+    updateProjectData()
+    resetToDoForm()
+    if (currentTab == 'All tasks') {
+        allTasksTab()
+    } else if (currentTab == 'Today') {
+        todayTab()
+    } else if (currentTab == 'This week') {
+        thisWeekTab()
     }
-    updateAll()
 
     return { title, description, dueDate, priority, project, done, toDoArray }
 }

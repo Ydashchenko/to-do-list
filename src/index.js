@@ -1,10 +1,8 @@
 import { blankProjectLoad, createProject } from './modules/create-projects';
 import { blankToDosLoad } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import {  displayTheToDoForm, displayTheProjectForm, updateAll, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab } from './modules/dom-manipulation';
+import {  displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
 import './style.css';
-
-init()
 
 let clickEventsModule = (function() {
     const displayTheToDoFormButton = document.getElementById('add-task')
@@ -27,6 +25,13 @@ let clickEventsModule = (function() {
 
     const thisWeekTabButton = document.getElementById('this-week')
     thisWeekTabButton.addEventListener('click', thisWeekTab)
+
+    const allCheckBoxes = document.querySelectorAll('.checkbox')
+    allCheckBoxes.forEach(chB => {
+        chB.addEventListener('click', event => {
+            
+        })
+    })
 })()
 
 export function init() {
@@ -34,24 +39,13 @@ export function init() {
     blankToDosLoad()
     updateCounterForEachProject()
     updateAllTasksTab()
-    updateAll()
+    updateProjectData()
 }
 
-Date.prototype.GetFirstDayOfWeek = function() {
-    return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
-}
-Date.prototype.GetLastDayOfWeek = function() {
-    return (new Date(this.setDate(this.getDate() - this.getDay() +7)));
-}
+init()
+export let currentTab = 'All tasks'
 
-var today = new Date();
-
-//alert(today.GetFirstDayOfWeek());
-
-//alert(today.GetLastDayOfWeek());
-
-let justDate = new Date('2023-07-12')
-console.log(justDate > today.GetFirstDayOfWeek())
+console.log(document.querySelectorAll('.checkbox').done)
 
 
 
