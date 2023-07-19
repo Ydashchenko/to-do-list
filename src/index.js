@@ -1,13 +1,10 @@
 import { blankProjectLoad, createProject } from './modules/create-projects';
 import { blankToDosLoad } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import {  displayTheToDoForm, displayTheProjectForm, updateAll, updateCounterForEachProject, allTasksTab, todayTab, allTasksTab, todayTab } from './modules/dom-manipulation';
+import {  displayTheToDoForm, displayTheProjectForm, updateAll, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab } from './modules/dom-manipulation';
 import './style.css';
 
-blankProjectLoad()
-blankToDosLoad()
-updateCounterForEachProject()
-updateAll()
+init()
 
 let clickEventsModule = (function() {
     const displayTheToDoFormButton = document.getElementById('add-task')
@@ -27,6 +24,34 @@ let clickEventsModule = (function() {
 
     const todayTabButton = document.getElementById('today')
     todayTabButton.addEventListener('click', todayTab)
+
+    const thisWeekTabButton = document.getElementById('this-week')
+    thisWeekTabButton.addEventListener('click', thisWeekTab)
 })()
+
+export function init() {
+    blankProjectLoad()
+    blankToDosLoad()
+    updateCounterForEachProject()
+    updateAllTasksTab()
+    updateAll()
+}
+
+Date.prototype.GetFirstDayOfWeek = function() {
+    return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
+}
+Date.prototype.GetLastDayOfWeek = function() {
+    return (new Date(this.setDate(this.getDate() - this.getDay() +7)));
+}
+
+var today = new Date();
+
+//alert(today.GetFirstDayOfWeek());
+
+//alert(today.GetLastDayOfWeek());
+
+let justDate = new Date('2023-07-12')
+console.log(justDate > today.GetFirstDayOfWeek())
+
 
 

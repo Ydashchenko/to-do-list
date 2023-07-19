@@ -2,6 +2,7 @@ import { blankProjectLoad} from "./create-projects";
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
 
+
 /* export function displayDefaultProject() {
     const projectList = document.getElementById('project-list')
     const defaultProject = document.createElement('div')
@@ -54,6 +55,98 @@ export function updateCounterForEachProject() {
     }
 }
 
+export function updateAllTasksTab() {
+    // Update all tasks in all task list
+    let allTasks = document.getElementById('task-list')
+    allTasks.innerHTML = ''
+    for (let d in toDoArray) {
+        let temp = document.createElement('div')
+        temp.classList.add('task')
+        temp.innerHTML = `
+        <input type="checkbox" class="checkbox">
+        <h4>${toDoArray[d].title}</h4>
+        <p>${toDoArray[d].dueDate}</p>
+        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
+        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
+        `
+        console.log(toDoArray[d].priority)
+        temp.style.border = `${toDoArray[d].priority} solid 3px`
+        console.log(temp.style.border)
+        // console.log(toDoArray[d].title)
+        // console.log(toDoArray[d].dueDate)
+        console.log(toDoArray[d].project)
+        allTasks.appendChild(temp)
+    }
+    console.log(toDoArray)
+}
+
+export function updateTodayTab() {
+    let todayTasks = document.getElementById('task-list')
+    todayTasks.innerHTML = ''
+    for (let d in toDoArray) {
+        const date = new Date();
+        let currentDay = String(date.getDate()).padStart(2, '0');
+        let currentMonth = String(date.getMonth()+1).padStart(2, "0");
+        let currentYear = date.getFullYear();
+        let todayDate = `${currentYear}-${currentMonth}-${currentDay}`
+        if (todayDate === toDoArray[d].dueDate){
+
+            let temp = document.createElement('div')
+            temp.classList.add('task')
+            temp.innerHTML = `
+            <input type="checkbox" class="checkbox">
+            <h4>${toDoArray[d].title}</h4>
+            <p>${toDoArray[d].dueDate}</p>
+            <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
+            <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
+            `
+            console.log(toDoArray[d].priority)
+            temp.style.border = `${toDoArray[d].priority} solid 3px`
+            console.log(temp.style.border)
+            // console.log(toDoArray[d].title)
+            // console.log(toDoArray[d].dueDate)
+            console.log(toDoArray[d].project)
+            todayTasks.appendChild(temp)
+        }
+    }
+}
+
+export function updateThisWeekTab() {
+    let thisWeekTasks = document.getElementById('task-list')
+    thisWeekTasks.innerHTML = ''
+
+    for (let d in toDoArray) {
+        Date.prototype.GetFirstDayOfWeek = function() {
+            return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
+        }
+        Date.prototype.GetLastDayOfWeek = function() {
+            return (new Date(this.setDate(this.getDate() - this.getDay() +7)));
+        }
+        
+        var today = new Date();
+        
+        //alert(today.GetFirstDayOfWeek());
+        
+        //alert(today.GetLastDayOfWeek());
+        let date = new Date(`${toDoArray[d].dueDate}`)
+        console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
+        if (date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek()){
+
+            let temp = document.createElement('div')
+            temp.classList.add('task')
+            temp.innerHTML = `
+            <input type="checkbox" class="checkbox">
+            <h4>${toDoArray[d].title}</h4>
+            <p>${toDoArray[d].dueDate}</p>
+            <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
+            <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
+            `
+            temp.style.border = `${toDoArray[d].priority} solid 3px`
+            thisWeekTasks.appendChild(temp)
+        }
+    }
+}
+
 export function updateAll() {
     // Update all projects in project list
     let allProjects = document.getElementById('project-list')
@@ -82,29 +175,8 @@ export function updateAll() {
         tempO.innerHTML = projectsArray[o].projectTitle
         projectDropDown.appendChild(tempO)
     }
-
-    // Update all tasks in all task list
-    let allTasks = document.getElementById('task-list')
-    allTasks.innerHTML = ''
-    for (let d in toDoArray) {
-        let temp = document.createElement('div')
-        temp.classList.add('task')
-        temp.innerHTML = `
-        <input type="checkbox" class="checkbox">
-        <h4>${toDoArray[d].title}</h4>
-        <p>${toDoArray[d].dueDate}</p>
-        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
-        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
-        `
-        // console.log(toDoArray[d].title)
-        // console.log(toDoArray[d].dueDate)
-        console.log(toDoArray[d].project)
-        allTasks.appendChild(temp)
-    }
-    console.log(toDoArray)
-
+    
     updateCounters()
-
 
 }
 
@@ -128,55 +200,25 @@ export function updateCounters() {
 }
 
 export function allTasksTab() {
-    const content = document.getElementById('content')
-
-    content.innerHTML = `
-    <h2>All tasks</h2>
-                <div id="task-list">
-                <!--
-                    <div class="task">
-                        <input type="checkbox" class="checkbox">
-                        <h4>Wash the dishes</h4>
-                        <p>Feb 27th</p>
-                        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
-                        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
-                    </div>
-                    <div class="task">
-                        <input type="checkbox" class="checkbox">
-                        <h4>See friends</h4>
-                        <p>Nov 4th</p>
-                        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
-                        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
-                    </div>
-                -->
-                </div>
-                
-                <button class="add-button" id="add-task"> <img src="../src/images/add-logo.png" alt="Add Logo"> Add Task</button>
-
-                <form id="add-task-form" method="post">
-                    <h4>New task:</h4>
-                    <select name="Project" id="Project">
-                        <!--
-                        <option value="default-project">Chores</option>
-                        <option value="create-new-project">Create New Project</option>
-                        -->
-                    </select>
-                    <input id="input-title" type="text" placeholder='Title:' required>
-                    <input id="input-description" type="text" placeholder="Description:" required>
-                    <input id='input-date' type="date" required>
-                    <select id="input-priority">
-                        <option id="low">Low</option>
-                        <option id="medium">Medium</option>
-                        <option id="high">High</option>
-                    </select>
-                    <button id="submit-add-task" type="button" class="add-button submit-button"><img src="../src/images/add-logo.png" alt="Add Logo">Add To Tasks</button>
-                </form>
-    `
+    const h2 = document.getElementById('content-h2')
+    h2.innerHTML = 'All tasks'
+    
+    updateAllTasksTab()
+    updateAll()
 }
 
 export function todayTab() {
-    const mainContainer = document.getElementById('main-container')
+    const h2 = document.getElementById('content-h2')
+    h2.innerHTML = 'Today'
 
-    mainContainer.innerHTML = ''
+    updateTodayTab()
+    updateAll()
+}
 
+export function thisWeekTab() {
+    const h2 = document.getElementById('content-h2')
+    h2.innerHTML = 'This week'
+
+    updateThisWeekTab()
+    updateAll()
 }
