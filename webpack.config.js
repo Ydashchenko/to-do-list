@@ -1,12 +1,12 @@
 const path = require('path');
-const { projectsArray } = require('./src/modules/create-projects');
+//const { projectsArray } = require('./src/modules/create-projects.js');
 
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [

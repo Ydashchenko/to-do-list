@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
-import { displayToDo, resetProjectForm, updateCounterForEachProject, updateProjectData } from "./dom-manipulation"
+import { resetProjectForm, updateCounterForEachProject, updateProjectData } from "./dom-manipulation"
 
 let projectsArray = []
 

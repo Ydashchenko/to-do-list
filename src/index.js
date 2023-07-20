@@ -1,8 +1,11 @@
 import { blankProjectLoad, createProject } from './modules/create-projects';
-import { blankToDosLoad } from './modules/create-todo';
+import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import {  displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
+import { displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
 import './style.css';
+
+init()
+
 
 let clickEventsModule = (function() {
     const displayTheToDoFormButton = document.getElementById('add-task')
@@ -26,12 +29,14 @@ let clickEventsModule = (function() {
     const thisWeekTabButton = document.getElementById('this-week')
     thisWeekTabButton.addEventListener('click', thisWeekTab)
 
-    const allCheckBoxes = document.querySelectorAll('.checkbox')
-    allCheckBoxes.forEach(chB => {
-        chB.addEventListener('click', event => {
-            
+    const allTasks = document.querySelectorAll('.task')
+    allTasks.forEach(task => {
+        task.addEventListener('click', () => {
+            console.log(toDoArray[task])
         })
     })
+
+    
 })()
 
 export function init() {
@@ -42,10 +47,8 @@ export function init() {
     updateProjectData()
 }
 
-init()
 export let currentTab = 'All tasks'
 
-console.log(document.querySelectorAll('.checkbox').done)
 
-
-
+const allTasks = document.getElementsByClassName('task')
+console.log(allTasks)
