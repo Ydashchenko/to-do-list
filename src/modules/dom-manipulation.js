@@ -147,6 +147,31 @@ export function updateThisWeekTab() {
     }
 }
 
+export function updateProjectTab(projectName) {
+    let taskList = document.getElementById('task-list')
+    taskList.innerHTML = ''
+
+    let thisProjectTasks = toDoArray.filter((task) => task.project === projectName)
+    for (let task in thisProjectTasks) {
+        let tempIfChecked = ''
+        if (thisProjectTasks[task].done) {
+            tempIfChecked = 'checked'
+        }
+
+        let temp = document.createElement('div')
+        temp.classList.add('task')
+        temp.innerHTML = `
+        <input type="checkbox" class="checkbox" ${tempIfChecked}>
+        <h4>${thisProjectTasks[task].title}</h4>
+        <p>${thisProjectTasks[task].dueDate}</p>
+        <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
+        <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
+        `
+        temp.style.border = `${thisProjectTasks[task].priority} solid 3px`
+        taskList.appendChild(temp)
+    }
+}
+
 export function updateProjectData() {
     // Update all projects in project list
     let allProjects = document.getElementById('project-list')
@@ -221,6 +246,13 @@ export function thisWeekTab() {
     h2.innerHTML = 'This week'
     currentTab = 'This week'
     updateThisWeekTab()
+    updateProjectData()
+}
+
+export function projectTab(projectName) {
+    const h2 = document.getElementById('content-h2')
+    h2.innerHTML = projectName
+    updateProjectTab(projectName)
     updateProjectData()
 }
 

@@ -1,7 +1,7 @@
 import { blankProjectLoad, createProject } from './modules/create-projects';
 import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import { displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
+import { projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
 import './style.css';
 
 init()
@@ -46,7 +46,7 @@ export function addProjectEventListeners() {
     projectTabs.forEach((project) => {
         project.addEventListener('click', () => {
             const projectName = project.querySelector('h4').textContent
-            console.log(projectName)
+            projectTab(projectName)
         })
     })
 }
