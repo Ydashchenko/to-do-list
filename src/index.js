@@ -29,14 +29,7 @@ let clickEventsModule = (function() {
     const thisWeekTabButton = document.getElementById('this-week')
     thisWeekTabButton.addEventListener('click', thisWeekTab)
 
-    const allTasks = document.querySelectorAll('.task')
-    allTasks.forEach(task => {
-        task.addEventListener('click', () => {
-            console.log(toDoArray[task])
-        })
-    })
 
-    
 })()
 
 export function init() {
@@ -45,10 +38,18 @@ export function init() {
     updateCounterForEachProject()
     updateAllTasksTab()
     updateProjectData()
+    //addProjectEventListeners()
+}
+
+export function addProjectEventListeners() {
+    const projectTabs = document.querySelectorAll('.project')
+    projectTabs.forEach((project) => {
+        project.addEventListener('click', () => {
+            const projectName = project.querySelector('h4').textContent
+            console.log(projectName)
+        })
+    })
 }
 
 export let currentTab = 'All tasks'
 
-
-const allTasks = document.getElementsByClassName('task')
-console.log(allTasks)

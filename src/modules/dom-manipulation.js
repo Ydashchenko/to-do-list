@@ -1,7 +1,6 @@
-import { blankProjectLoad} from "./create-projects";
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
-import { currentTab } from "..";
+import { currentTab, addProjectEventListeners } from "..";
 
 
 export function displayTheToDoForm() {
@@ -178,6 +177,7 @@ export function updateProjectData() {
     }
     
     updateCounters()
+    addProjectEventListeners()
 
 }
 

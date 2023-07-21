@@ -25,8 +25,9 @@ export const blankProjectLoad = () => {
 
 export const createProject = () => {
     let projectTitle = document.getElementById('input-project-name').value
+    let tasksInProject = 0
 
-    let newProject = factoryProject(projectTitle, 0)
+    let newProject = factoryProject(projectTitle, tasksInProject)
     
     if (projectTitle == "") {
         alert("Input the project name, please!")

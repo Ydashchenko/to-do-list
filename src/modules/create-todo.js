@@ -47,6 +47,7 @@ export const createTodo = () => {
     updateCounterForEachProject()
     updateProjectData()
     resetToDoForm()
+    
     if (currentTab == 'All tasks') {
         allTasksTab()
     } else if (currentTab == 'Today') {
