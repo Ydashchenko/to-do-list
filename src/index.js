@@ -44,7 +44,11 @@ export function init() {
 export function addProjectEventListeners() {
     const projectTabs = document.querySelectorAll('.project')
     projectTabs.forEach((project) => {
-        project.addEventListener('click', () => {
+        project.addEventListener('click', (event) => {
+            if (event.target.classList.contains('edit-project') || event.target.classList.contains('remove-project')) {
+                return
+            }
+
             const projectName = project.querySelector('h4').textContent
             projectTab(projectName)
         })

@@ -1,6 +1,8 @@
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
 import { currentTab, addProjectEventListeners } from "..";
+import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
+
 
 
 export function displayTheToDoForm() {
@@ -32,9 +34,12 @@ export function updateCounterForEachProject() {
         let tempCounter = 0
         console.log(projectsArray[p])
         for (let t in toDoArray) {
-            if (toDoArray[t].project === projectsArray[p].projectTitle) {
+            if (toDoArray[t].project === projectsArray[p].projectTitle && toDoArray[t].done === false) {
                 tempCounter += 1
             }
+        }
+        if (tempCounter === 0) {
+            tempCounter = ''
         }
         projectsArray[p].tasksInProject = tempCounter
 
@@ -101,8 +106,10 @@ export function updateTodayTab() {
             // console.log(toDoArray[d].dueDate)
             console.log(toDoArray[d].project)
             todayTasks.appendChild(temp)
+            console.log(todayTasks)
         }
     }
+
 }
 
 export function updateThisWeekTab() {
@@ -207,22 +214,21 @@ export function updateProjectData() {
 }
 
 export function updateCounters() {
-    // Update all counters
-    let allTasksCounter = document.getElementById('all-tasks-counter')
-    let todayCounter = document.getElementById('today-counter')
-    let thisWeekCounter = document.getElementById('this-week-counter')
-    let projectCounter = document.getElementById('project-counter')
+    const allTasksCounter = document.getElementById('all-tasks-counter');
+    const todayCounter = document.getElementById('today-counter');
+    const thisWeekCounter = document.getElementById('this-week-counter');
+  
+    const today = startOfDay(new Date());
+  
+    const allTasks = toDoArray.filter(task => !task.done);
+    allTasks.length === 0 ? allTasksCounter.innerHTML = '' : allTasksCounter.innerHTML = allTasks.length;
 
-    let unCheckedTasks = []
-    
-    for (let u in toDoArray) {
-        if (toDoArray[u].done == false) {
-            unCheckedTasks.push(toDoArray[u])
-        }
-    }
+    const todayTasks = toDoArray.filter(task => isToday(parseISO(task.dueDate)) && !task.done);
+    todayTasks.length === 0 ? todayCounter.innerHTML = '' : todayCounter.innerHTML = todayTasks.length;
+  
+    const thisWeekTasks = toDoArray.filter(task => isThisWeek(parseISO(task.dueDate)) && !task.done);
+    thisWeekTasks.length === 0 ? thisWeekCounter.innerHTML = '' : thisWeekCounter.innerHTML = thisWeekTasks.length;
 
-    allTasksCounter.innerHTML = unCheckedTasks.length
-    projectCounter.innerHTML = projectsArray.length
 }
 
 export function allTasksTab() {
