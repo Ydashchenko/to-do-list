@@ -11,10 +11,19 @@ export function factoryProject(projectTitle, tasksInProject) {
 }
 
 export const blankProjectLoad = () => {
-    const myProject1 = factoryProject('Chores', 0)
-    projectsArray.push(myProject1)
-    console.log(projectsArray)
-    return { projectsArray, myProject1 }
+    const chores = factoryProject('Chores', 0)
+    projectsArray.push(chores)
+    
+    const gym = factoryProject('Gym', 0)
+    projectsArray.push(gym)
+
+    const education = factoryProject('Education', 0)
+    projectsArray.push(education)
+
+    const health = factoryProject('Health', 0)
+    projectsArray.push(health)
+
+    return { projectsArray, chores, gym, education, health }
     /*
     let projectTitle = 'Chores'
     let tasksInProject = 0
