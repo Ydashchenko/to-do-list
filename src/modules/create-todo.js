@@ -1,6 +1,6 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
 import { resetToDoForm, updateProjectData, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab } from "./dom-manipulation"
-import { currentTab } from ".."
+import { currentTab, addRemoveProjectEventListeners } from ".."
 
 let toDoArray = []
 
@@ -55,6 +55,7 @@ export const createTodo = () => {
     } else if (currentTab == 'This week') {
         thisWeekTab()
     }
+    addRemoveProjectEventListeners()
 
     return { title, description, dueDate, priority, project, done, toDoArray }
 }

@@ -1,4 +1,4 @@
-import { blankProjectLoad, createProject } from './modules/create-projects';
+import { blankProjectLoad, createProject, projectsArray } from './modules/create-projects';
 import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
 import { projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
@@ -29,7 +29,6 @@ let clickEventsModule = (function() {
     const thisWeekTabButton = document.getElementById('this-week')
     thisWeekTabButton.addEventListener('click', thisWeekTab)
 
-
 })()
 
 export function init() {
@@ -39,6 +38,7 @@ export function init() {
     updateAllTasksTab()
     updateProjectData()
     //addProjectEventListeners()
+    addRemoveProjectEventListeners()
 }
 
 export function addProjectEventListeners() {
@@ -53,6 +53,44 @@ export function addProjectEventListeners() {
             projectTab(projectName)
         })
     })
+}
+
+export function addRemoveProjectEventListeners() {
+    const removeProjectImages = document.querySelectorAll(".remove-project");
+    removeProjectImages.forEach((removeProjectImg) => {
+        removeProjectImg.addEventListener('click', deleteProject)
+    })
+}
+
+export function deleteProject(event) {
+    const parent = event.target.closest('.project')
+    let projectName = parent.querySelector('h4').innerHTML
+    console.log(projectName)
+    const indexToDelete = projectsArray.findIndex((project) => project.projectTitle === projectName)
+    console.log(indexToDelete)
+    console.log(projectsArray)
+
+    // Delete all tasks of this project
+
+    toDoArray = toDoArray.filter((task) => task.project !== projectName)
+    console.log(projectsArray)
+    // Delete the project itself
+    projectsArray.splice(indexToDelete, 1)
+
+    // Update data
+    updateCounterForEachProject()
+    updateProjectData()
+    addRemoveProjectEventListeners()
+    console.log('aboba')
+    if (currentTab == 'All tasks') {
+        allTasksTab()
+    } else if (currentTab == 'Today') {
+        todayTab()
+    } else if (currentTab == 'This week') {
+        thisWeekTab()
+    }
+    
+    
 }
 
 export let currentTab = 'All tasks'

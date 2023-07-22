@@ -1,6 +1,6 @@
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
-import { currentTab, addProjectEventListeners } from "..";
+import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners } from "..";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
 
 
@@ -64,9 +64,6 @@ export function updateAllTasksTab() {
         <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
         `
-        console.log(toDoArray[d].priority)
-        temp.style.border = `${toDoArray[d].priority} solid 3px`
-        console.log(temp.style.border)
         // console.log(toDoArray[d].title)
         // console.log(toDoArray[d].dueDate)
         console.log(toDoArray[d].project)
@@ -99,9 +96,6 @@ export function updateTodayTab() {
             <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
             <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
             `
-            console.log(toDoArray[d].priority)
-            temp.style.border = `${toDoArray[d].priority} solid 3px`
-            console.log(temp.style.border)
             // console.log(toDoArray[d].title)
             // console.log(toDoArray[d].dueDate)
             console.log(toDoArray[d].project)
@@ -189,7 +183,7 @@ export function updateProjectData() {
         tempP.innerHTML = `
         <img class="project-logo" src="../src/images/project-logo.png" alt="Project Logo">
         <h4>${projectsArray[p].projectTitle}</h4>
-        <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
+        
         <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
         <p class="counter">${projectsArray[p].tasksInProject}</p>
         `
@@ -241,6 +235,7 @@ export function allTasksTab() {
     currentTab = 'All tasks'
     updateAllTasksTab()
     updateProjectData()
+    addRemoveProjectEventListeners()
 }
 
 export function todayTab() {
@@ -249,6 +244,7 @@ export function todayTab() {
     currentTab = 'Today'
     updateTodayTab()
     updateProjectData()
+    addRemoveProjectEventListeners()
 }
 
 export function thisWeekTab() {
@@ -257,6 +253,7 @@ export function thisWeekTab() {
     currentTab = 'This week'
     updateThisWeekTab()
     updateProjectData()
+    addRemoveProjectEventListeners()
 }
 
 export function projectTab(projectName) {
@@ -264,5 +261,6 @@ export function projectTab(projectName) {
     h2.innerHTML = projectName
     updateProjectTab(projectName)
     updateProjectData()
+    addRemoveProjectEventListeners()
 }
 

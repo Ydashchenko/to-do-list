@@ -73,7 +73,7 @@ nav {
 
 .project {
     display: grid;
-    grid-template-columns: auto 3fr auto auto 1fr;
+    grid-template-columns: auto 4fr auto  1fr;
     gap: 20px;
     align-items: center;
 }
@@ -251,11 +251,11 @@ h3, h2 {
     padding: 5px 20px;
 }
 
-#input-title, #input-description {
+#input-title, #input-description, input {
     border: 0px;
 }
 
-#input-title:focus, #input-description:focus {
+#input-title:focus, #input-description:focus, input:focus {
     outline: none;
 }
 
@@ -309,3 +309,7 @@ h3, h2 {
     border-radius: 5px;
 }
 
+.input-new-project-name {
+    width: 100px;
+    font-size: 20px;
+}
