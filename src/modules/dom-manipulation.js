@@ -200,7 +200,11 @@ export function updateProjectData() {
 
     // Update project dropdown
     let projectDropDown = document.getElementById('Project')
-    projectDropDown.innerHTML = ''
+    projectDropDown.innerHTML = ``
+    let noProject = document.createElement('option')
+    noProject.value = ''
+    noProject.innerHTML = '(No Project)'
+    projectDropDown.appendChild(noProject)
     for (let o in projectsArray) {
         let tempO = document.createElement('option')
         tempO.value = projectsArray[o].projectTitle
