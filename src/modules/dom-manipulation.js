@@ -64,6 +64,7 @@ export function updateAllTasksTab() {
         <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
         `
+        temp.classList.add(`${toDoArray[d].priority}-priority`)
         // console.log(toDoArray[d].title)
         // console.log(toDoArray[d].dueDate)
         console.log(toDoArray[d].project)
@@ -96,6 +97,7 @@ export function updateTodayTab() {
             <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
             <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
             `
+            temp.classList.add(`${toDoArray[d].priority}-priority`)
             // console.log(toDoArray[d].title)
             // console.log(toDoArray[d].dueDate)
             console.log(toDoArray[d].project)
@@ -142,7 +144,8 @@ export function updateThisWeekTab() {
             <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
             <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
             `
-            temp.style.border = `${toDoArray[d].priority} solid 3px`
+            temp.classList.add(`${toDoArray[d].priority}-priority`)
+            
             thisWeekTasks.appendChild(temp)
         }
     }
@@ -168,7 +171,7 @@ export function updateProjectTab(projectName) {
         <img class="edit-task" src="../src/images/edit-logo.png" alt="Edit logo">
         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
         `
-        temp.style.border = `${thisProjectTasks[task].priority} solid 3px`
+        temp.classList.add(`${thisProjectTasks[task].priority}-priority`)
         taskList.appendChild(temp)
     }
 }

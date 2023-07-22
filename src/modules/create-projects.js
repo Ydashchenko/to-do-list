@@ -24,13 +24,6 @@ export const blankProjectLoad = () => {
     projectsArray.push(health)
 
     return { projectsArray, chores, gym, education, health }
-    /*
-    let projectTitle = 'Chores'
-    let tasksInProject = 0
-    projectsArray.push({ projectTitle,  tasksInProject})
-    console.log(projectsArray) 
-    return { projectsArray, projectTitle, tasksInProject }
-    */
 }
 
 export const createProject = () => {
