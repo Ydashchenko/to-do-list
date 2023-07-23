@@ -52,11 +52,12 @@ export function updateAllTasksTab() {
     allTasks.innerHTML = ''
     for (let d in toDoArray) {
         let temp = document.createElement('div')
-        temp.classList.add('task')
         let tempIfChecked = ''
         if (toDoArray[d].done) {
             tempIfChecked = 'checked'
+            temp.classList.add('checked')
         }
+        temp.classList.add('task')
         temp.innerHTML = `
         <input type="checkbox" class="checkbox" ${tempIfChecked}>
         <h4>${toDoArray[d].title}</h4>
@@ -79,16 +80,17 @@ export function updateTodayTab() {
     
     for (let d in toDoArray) {
         const date = new Date();
-        let tempIfChecked = ''
-        if (toDoArray[d].done) {
-            tempIfChecked = 'checked'
-        }
         let currentDay = String(date.getDate()).padStart(2, '0');
         let currentMonth = String(date.getMonth()+1).padStart(2, "0");
         let currentYear = date.getFullYear();
         let todayDate = `${currentYear}-${currentMonth}-${currentDay}`
         if (todayDate === toDoArray[d].dueDate){
             let temp = document.createElement('div')
+            let tempIfChecked = ''
+            if (toDoArray[d].done) {
+                tempIfChecked = 'checked'
+                temp.classList.add('checked')
+            }
             temp.classList.add('task')
             temp.innerHTML = `
             <input type="checkbox" class="checkbox" ${tempIfChecked}>
@@ -112,12 +114,6 @@ export function updateThisWeekTab() {
     thisWeekTasks.innerHTML = ''
     
     for (let d in toDoArray) {
-
-        let tempIfChecked = ''
-        if (toDoArray[d].done) {
-            tempIfChecked = 'checked'
-        }
-
         Date.prototype.GetFirstDayOfWeek = function() {
             return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
         }
@@ -127,13 +123,16 @@ export function updateThisWeekTab() {
         
         var today = new Date();
         
-        //alert(today.GetFirstDayOfWeek());
-        
-        //alert(today.GetLastDayOfWeek());
         let date = new Date(`${toDoArray[d].dueDate}`)
         console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
         if (date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek()){
             let temp = document.createElement('div')
+            let tempIfChecked = ''
+            if (toDoArray[d].done) {
+                tempIfChecked = 'checked'
+                temp.classList.add('checked')
+            }
+    
             temp.classList.add('task')
             temp.innerHTML = `
             <input type="checkbox" class="checkbox" ${tempIfChecked}>
@@ -152,15 +151,15 @@ export function updateThisWeekTab() {
 export function updateProjectTab(projectName) {
     let taskList = document.getElementById('task-list')
     taskList.innerHTML = ''
-
+    currentTab = projectName
     let thisProjectTasks = toDoArray.filter((task) => task.project === projectName)
     for (let task in thisProjectTasks) {
+        let temp = document.createElement('div')
         let tempIfChecked = ''
         if (thisProjectTasks[task].done) {
             tempIfChecked = 'checked'
-        }
-
-        let temp = document.createElement('div')
+            temp.classList.add('checked')
+        } 
         temp.classList.add('task')
         temp.innerHTML = `
         <input type="checkbox" class="checkbox" ${tempIfChecked}>
@@ -268,4 +267,16 @@ export function projectTab(projectName) {
     updateProjectTab(projectName)
     updateProjectData()
     addRemoveProjectEventListeners()
+}
+
+export function changeTab(tab) {
+    if (tab == 'All tasks') {
+        allTasksTab()
+    } else if (tab == 'Today') {
+        todayTab()
+    } else if (tab == 'This week') {
+        thisWeekTab()
+    } else {
+        projectTab(tab)
+    }
 }

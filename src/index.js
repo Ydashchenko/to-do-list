@@ -1,7 +1,7 @@
 import { blankProjectLoad, createProject, projectsArray } from './modules/create-projects';
 import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import { updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab} from './modules/dom-manipulation';
+import { updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, changeTab} from './modules/dom-manipulation';
 import './style.css';
 
 init()
@@ -80,13 +80,7 @@ export function deleteProject(event) {
     projectsArray.splice(indexToDelete, 1)
 
     // Update data
-    if (currentTab == 'All tasks') {
-        allTasksTab()
-    } else if (currentTab == 'Today') {
-        todayTab()
-    } else if (currentTab == 'This week') {
-        thisWeekTab()
-    }
+    changeTab(currentTab)
     updateCounterForEachProject()
     updateProjectData()
     addRemoveProjectEventListeners()
@@ -115,6 +109,7 @@ export function toggleTaskCheck(event) {
         }
     })
     // Update all
+    changeTab(currentTab)
     updateCounterForEachProject()
     updateProjectData()
     updateCounters()

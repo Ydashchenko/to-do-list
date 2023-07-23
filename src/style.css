@@ -325,3 +325,8 @@ h3, h2 {
 .Low-priority {
     border-left: solid 3px green;
 }
+
+.checked h4 {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+}
