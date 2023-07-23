@@ -1,6 +1,6 @@
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
-import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners } from "..";
+import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners } from "..";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
 
 
@@ -76,6 +76,7 @@ export function updateAllTasksTab() {
 export function updateTodayTab() {
     let todayTasks = document.getElementById('task-list')
     todayTasks.innerHTML = ''
+    
     for (let d in toDoArray) {
         const date = new Date();
         let tempIfChecked = ''
@@ -87,7 +88,6 @@ export function updateTodayTab() {
         let currentYear = date.getFullYear();
         let todayDate = `${currentYear}-${currentMonth}-${currentDay}`
         if (todayDate === toDoArray[d].dueDate){
-
             let temp = document.createElement('div')
             temp.classList.add('task')
             temp.innerHTML = `
@@ -98,20 +98,19 @@ export function updateTodayTab() {
             <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
             `
             temp.classList.add(`${toDoArray[d].priority}-priority`)
-            // console.log(toDoArray[d].title)
-            // console.log(toDoArray[d].dueDate)
-            console.log(toDoArray[d].project)
             todayTasks.appendChild(temp)
             console.log(todayTasks)
         }
     }
-
+    console.log('This is')
+    console.log(toDoArray)
+    
 }
 
 export function updateThisWeekTab() {
     let thisWeekTasks = document.getElementById('task-list')
     thisWeekTasks.innerHTML = ''
-
+    
     for (let d in toDoArray) {
 
         let tempIfChecked = ''
@@ -134,7 +133,6 @@ export function updateThisWeekTab() {
         let date = new Date(`${toDoArray[d].dueDate}`)
         console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
         if (date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek()){
-
             let temp = document.createElement('div')
             temp.classList.add('task')
             temp.innerHTML = `
@@ -174,6 +172,7 @@ export function updateProjectTab(projectName) {
         temp.classList.add(`${thisProjectTasks[task].priority}-priority`)
         taskList.appendChild(temp)
     }
+    return { thisProjectTasks }
 }
 
 export function updateProjectData() {
@@ -193,6 +192,7 @@ export function updateProjectData() {
 
         allProjects.appendChild(tempP)
     }
+    
 
 
     // Update project dropdown
@@ -211,7 +211,9 @@ export function updateProjectData() {
     
     updateCounters()
     addProjectEventListeners()
-
+    addToggleTaskCheckEventListeners()
+    addRemoveProjectEventListeners()
+   
 }
 
 export function updateCounters() {
@@ -257,6 +259,7 @@ export function thisWeekTab() {
     updateThisWeekTab()
     updateProjectData()
     addRemoveProjectEventListeners()
+    
 }
 
 export function projectTab(projectName) {
@@ -266,4 +269,3 @@ export function projectTab(projectName) {
     updateProjectData()
     addRemoveProjectEventListeners()
 }
-

@@ -1,38 +1,39 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
 import { resetToDoForm, updateProjectData, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab } from "./dom-manipulation"
-import { currentTab, addRemoveProjectEventListeners } from ".."
+import { currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners } from ".."
 
 let toDoArray = []
+let idCounter = 7
 
-export function factoryToDo(title, description, dueDate, priority, project, done) {
+export function factoryToDo(id, title, description, dueDate, priority, project, done) {
     return {
-        title, description, dueDate, priority, project, done
+        id, title, description, dueDate, priority, project, done
     }
 }
 
 export function blankToDosLoad() {
-    const myToDo1 = factoryToDo('Wash the dishes', 'Just wash the dishes lol', '2023-07-22', 'medium', 'Chores', true)
+    const myToDo1 = factoryToDo(0, 'Wash the dishes', 'Just wash the dishes lol', '2023-07-22', 'Medium', 'Chores', true)
     toDoArray.push(myToDo1)
 
-    const myToDo2 = factoryToDo('See the doctor', 'Have to know if you need this surgery', '2023-07-24', 'high', 'Health', false)
+    const myToDo2 = factoryToDo(1, 'See the doctor', 'Have to know if you need this surgery', '2023-07-24', 'High', 'Health', false)
     toDoArray.push(myToDo2)
 
-    const myToDo3 = factoryToDo('100 push ups', 'JUST DO IT', '2023-07-28', 'medium', 'Gym', true)
+    const myToDo3 = factoryToDo(2, '100 push ups', 'JUST DO IT', '2023-07-28', 'Medium', 'Gym', true)
     toDoArray.push(myToDo3)
 
-    const myToDo4 = factoryToDo('Make the bed', 'No one sees it except you so screw it', '2023-07-25', 'low', 'Chores', true)
+    const myToDo4 = factoryToDo(3, 'Make the bed', 'No one sees it except you so screw it', '2023-07-25', 'Low', 'Chores', true)
     toDoArray.push(myToDo4)
 
-    const myToDo5 = factoryToDo('Get to do list app done', 'You HAVE TO finish it', '2023-07-31', 'high', 'Education', false)
+    const myToDo5 = factoryToDo(4, 'Get to do list app done', 'You HAVE TO finish it', '2023-07-31', 'High', 'Education', false)
     toDoArray.push(myToDo5)
 
-    const myToDo6 = factoryToDo('Watch naruto again', 'WHAT?', '2023-08-10', 'low', '', false)
+    const myToDo6 = factoryToDo(5, 'Watch naruto again', 'WHAT?', '2023-08-10', 'Low', '', false)
     toDoArray.push(myToDo6)
 
-    const myToDo7 = factoryToDo('Learn React', 'You need this', '2023-08-30', 'high', 'Education', false)
+    const myToDo7 = factoryToDo(6, 'Learn React', 'You need this', '2023-08-30', 'High', 'Education', false)
     toDoArray.push(myToDo7)
 
-    const myToDo8 = factoryToDo('See friends', 'Spend some time with friends cuz your a hikka now', '2023-12-14', 'medium' , '', true)
+    const myToDo8 = factoryToDo(7, 'See friends', 'Spend some time with friends cuz your a hikka now', '2023-12-14', 'Medium' , '', true)
     toDoArray.push(myToDo8)
 
     console.log(toDoArray)
@@ -40,6 +41,8 @@ export function blankToDosLoad() {
 }
 
 export const createTodo = () => {
+    idCounter += 1
+    let id = idCounter
     let title = document.getElementById('input-title').value
     let description = document.getElementById('input-description').value
     let dueDate = document.getElementById('input-date').value
@@ -47,7 +50,7 @@ export const createTodo = () => {
     let project = document.getElementById('Project').value
     let done = false
 
-    let newToDo = factoryToDo(title, description, dueDate, priority, project, false)
+    let newToDo = factoryToDo(id, title, description, dueDate, priority, project, false)
 
     if (title == "" || description == "" || dueDate == "") {
         alert("All the fields are required, please try again!")
@@ -56,8 +59,6 @@ export const createTodo = () => {
 
     if (parseISO(dueDate) < startOfToday()) {
         alert('You have entered a date that has already passed!')
-        console.log('Due date: ', parseISO(dueDate))
-        console.log('Date now: ', startOfToday())
         return
     }
 
@@ -76,9 +77,13 @@ export const createTodo = () => {
         thisWeekTab()
     }
     addRemoveProjectEventListeners()
+    addToggleTaskCheckEventListeners()
+    updateCounterForEachProject()
 
-    return { title, description, dueDate, priority, project, done, toDoArray }
+    return { id, title, description, dueDate, priority, project, done, toDoArray, idCounter }
 }
+
+
 
 
 

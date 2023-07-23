@@ -1,7 +1,7 @@
 import { blankProjectLoad, createProject, projectsArray } from './modules/create-projects';
 import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import { projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, updateTodayTab, updateThisWeekTab} from './modules/dom-manipulation';
+import { updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab} from './modules/dom-manipulation';
 import './style.css';
 
 init()
@@ -39,6 +39,7 @@ export function init() {
     updateProjectData()
     //addProjectEventListeners()
     addRemoveProjectEventListeners()
+    addToggleTaskCheckEventListeners()
 }
 
 export function addProjectEventListeners() {
@@ -54,6 +55,7 @@ export function addProjectEventListeners() {
         })
     })
 }
+
 
 export function addRemoveProjectEventListeners() {
     const removeProjectImages = document.querySelectorAll(".remove-project");
@@ -78,10 +80,6 @@ export function deleteProject(event) {
     projectsArray.splice(indexToDelete, 1)
 
     // Update data
-    updateCounterForEachProject()
-    updateProjectData()
-    addRemoveProjectEventListeners()
-    console.log('aboba')
     if (currentTab == 'All tasks') {
         allTasksTab()
     } else if (currentTab == 'Today') {
@@ -89,8 +87,38 @@ export function deleteProject(event) {
     } else if (currentTab == 'This week') {
         thisWeekTab()
     }
+    updateCounterForEachProject()
+    updateProjectData()
+    addRemoveProjectEventListeners()
+
+    console.log("Here's toDoArray")
+    console.log(toDoArray)
     
-    
+}
+
+export function addToggleTaskCheckEventListeners() {
+    const checkboxes = document.querySelectorAll('.checkbox')
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('click', toggleTaskCheck)
+    })
+}
+
+export function toggleTaskCheck(event) {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    const taskToUpdate = toDoArray.find((task) => task.title === taskName)
+    console.log(taskToUpdate)
+    const taskId = taskToUpdate.id
+    toDoArray.forEach((task) => {
+        if (task.id === taskId) {
+            task.done = !task.done
+        }
+    })
+    // Update all
+    updateCounterForEachProject()
+    updateProjectData()
+    updateCounters()
+    addRemoveProjectEventListeners()
 }
 
 export let currentTab = 'All tasks'

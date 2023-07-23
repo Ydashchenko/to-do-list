@@ -314,14 +314,14 @@ h3, h2 {
     font-size: 20px;
 }
 
-.high-priority {
+.High-priority {
     border-left: solid 3px red;
 }
 
-.medium-priority {
+.Medium-priority {
     border-left: solid 3px  rgb(255, 208, 0);
 }
 
-.low-priority {
+.Low-priority {
     border-left: solid 3px green;
 }
