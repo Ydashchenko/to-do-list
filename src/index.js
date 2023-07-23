@@ -40,6 +40,7 @@ export function init() {
     //addProjectEventListeners()
     addRemoveProjectEventListeners()
     addToggleTaskCheckEventListeners()
+    addDeleteTaskCheckEventListeners()
 }
 
 export function addProjectEventListeners() {
@@ -108,6 +109,27 @@ export function toggleTaskCheck(event) {
             task.done = !task.done
         }
     })
+    // Update all
+    changeTab(currentTab)
+    updateCounterForEachProject()
+    updateProjectData()
+    updateCounters()
+    addRemoveProjectEventListeners()
+    addDeleteTaskCheckEventListeners()
+}
+
+export function addDeleteTaskCheckEventListeners() {
+    const deleteBtns = document.querySelectorAll('.remove-task')
+    deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', deleteTask)
+    })
+}
+
+export function deleteTask(event) {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    toDoArray = toDoArray.filter((task) => task.title !== taskName)
+    console.log(toDoArray)
     // Update all
     changeTab(currentTab)
     updateCounterForEachProject()

@@ -1,6 +1,6 @@
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
-import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners } from "..";
+import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
 
 
@@ -212,6 +212,7 @@ export function updateProjectData() {
     addProjectEventListeners()
     addToggleTaskCheckEventListeners()
     addRemoveProjectEventListeners()
+    addDeleteTaskCheckEventListeners()
    
 }
 

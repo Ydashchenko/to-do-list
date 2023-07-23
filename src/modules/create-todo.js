@@ -1,6 +1,6 @@
 import { compareAsc, format, parseISO, startOfToday } from "date-fns"
 import { resetToDoForm, updateProjectData, updateCounterForEachProject, changeTab } from "./dom-manipulation"
-import { currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners } from ".."
+import { currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from ".."
 
 let toDoArray = []
 let idCounter = 7
@@ -72,6 +72,7 @@ export const createTodo = () => {
     changeTab(currentTab)
 
     addRemoveProjectEventListeners()
+    addDeleteTaskCheckEventListeners()
     addToggleTaskCheckEventListeners()
     updateCounterForEachProject()
 
