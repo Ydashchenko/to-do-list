@@ -1,7 +1,7 @@
-import { blankProjectLoad, createProject, projectsArray } from './modules/create-projects';
-import { blankToDosLoad, toDoArray } from './modules/create-todo';
-import { createTodo } from './modules/create-todo';
-import { makeDetailOverlayVisible, makeDetailOverlayInvisible, updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, changeTab} from './modules/dom-manipulation';
+import { blankProjectLoad, createProject, projectsArray } from './modules/projects-data';
+import { blankToDosLoad, toDoArray } from './modules/todo-data';
+import { createTodo, confirmEditTask } from './modules/todo-data';
+import { makeEditOverlayVisible, makeEditOverlayInvisible, makeDetailOverlayVisible, makeDetailOverlayInvisible, updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, changeTab} from './modules/dom-manipulation';
 import './style.css';
 
 init()
@@ -41,8 +41,10 @@ export function init() {
     addViewTaskInfoEventListeners()
     addToggleTaskCheckEventListeners()
     addDeleteTaskCheckEventListeners()
-    addCloseDetailOverlayEventListener()
     addEditTaskCheckEventListeners()
+    addCloseDetailOverlayEventListener()
+    addCloseEditOverlayEventListener()
+    addConfirmEditEventListener()
 }
 
 export function addProjectEventListeners() {
@@ -141,6 +143,7 @@ export function deleteTask(event) {
     updateCounters()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 }
 
 export function addViewTaskInfoEventListeners() {
@@ -184,13 +187,31 @@ export function addEditTaskCheckEventListeners() {
 export function editTask() {
     const parent = event.target.closest('.task')
     let taskName = parent.querySelector('h4').innerHTML
-    console.log('edit task')
+    let neededTask = toDoArray.find((task) => task.title === taskName)
+    console.log(neededTask)
+    document.querySelector('#edit-popup-title').value = neededTask.title
+    document.querySelector('#edit-popup-details').value = neededTask.description
+    document.querySelector('#edit-popup-date').value = neededTask.dueDate
+    document.querySelector('#edit-popup-id').innerHTML = neededTask.id
+    document.querySelector('#edit-popup-priority').value = neededTask.priority
+    makeEditOverlayVisible()
 }
 
 export function addCloseDetailOverlayEventListener() {
     const detailOverlayCloseButton = document.getElementById('details-popup-close')
     console.log(detailOverlayCloseButton)
     detailOverlayCloseButton.addEventListener('click', makeDetailOverlayInvisible)
+}
+
+export function addCloseEditOverlayEventListener() {
+    const editOverlayCloseButton = document.querySelector('.edit-popup-close')
+    console.log(editOverlayCloseButton)
+    editOverlayCloseButton.addEventListener('click', makeEditOverlayInvisible)
+}
+
+export function addConfirmEditEventListener() {
+    const confirmEditButton = document.querySelector('#confirm-edit-task')
+    confirmEditButton.addEventListener('click', confirmEditTask)
 }
 
 export let currentTab = 'All tasks'

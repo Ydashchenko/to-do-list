@@ -199,7 +199,7 @@ h3, h2 {
     transition: 0.2s;
 }
 
-.add-button:hover, .project:hover, #first div:hover, .edit-popup-close:hover {
+.add-button:hover, .project:hover, #first div:hover, .edit-popup-close:hover, #details-popup-close:hover {
     background-color: rgba(71, 61, 139, 0.12);
     transition: 0.2s;
 }
@@ -398,4 +398,9 @@ h3, h2 {
 
 .details-popup-details {
     max-height: 12rem;
+}
+
+#edit-popup-title, #edit-popup-details {
+    font-size: 18px;
+    font-family: inherit;
 }

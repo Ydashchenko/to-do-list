@@ -1,6 +1,6 @@
 import { parseISO, startOfToday } from "date-fns"
-import { resetToDoForm, updateProjectData, updateCounterForEachProject, changeTab } from "./dom-manipulation"
-import { addViewTaskInfoEventListeners, currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from ".."
+import { makeEditOverlayInvisible, resetToDoForm, updateProjectData, updateCounterForEachProject, changeTab } from "./dom-manipulation"
+import { addEditTaskCheckEventListeners, addViewTaskInfoEventListeners, currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from ".."
 
 let toDoArray = []
 let idCounter = 7
@@ -76,11 +76,38 @@ export const createTodo = () => {
     addToggleTaskCheckEventListeners()
     updateCounterForEachProject()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 
     return { id, title, description, dueDate, priority, project, done, toDoArray, idCounter }
 }
 
+export function confirmEditTask() {
+    const neededId = document.getElementById('edit-popup-id').innerHTML
+    console.log(neededId)
+    console.log(document.querySelector('#edit-popup-title').innerHTML)
+    let taskToEdit = toDoArray.find((task) => task.id == neededId)
+    console.log(taskToEdit)
+    taskToEdit.title = document.querySelector('#edit-popup-title').value
+    taskToEdit.description = document.querySelector('#edit-popup-details').value
+    taskToEdit.dueDate = document.querySelector('#edit-popup-date').value
+    taskToEdit.priority = document.querySelector('#edit-popup-priority').value
+    console.log(toDoArray)
+    makeEditOverlayInvisible()
 
+    updateCounterForEachProject()
+    updateProjectData()
+    resetToDoForm()
+        
+    changeTab(currentTab)
+
+    addRemoveProjectEventListeners()
+    addDeleteTaskCheckEventListeners()
+    addToggleTaskCheckEventListeners()
+    updateCounterForEachProject()
+    addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
+
+}
 
 
 

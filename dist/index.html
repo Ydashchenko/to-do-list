@@ -37,13 +37,14 @@
         </div>
     </div>
 
-    <div class="overlay-edit">
+    <div class="overlay-edit overlay-edit-invisible">
         <div class="edit-popup">
             <div class="edit-popup-close">x</div>
             <form id="edit-popup-form" method="post">
                 <textarea id="edit-popup-title" required></textarea>
                 <textarea id="edit-popup-details" cols="20" rows="5" required></textarea>
                 <div id="edit-popup-row">
+                    <p id="edit-popup-id"></p>
                     <input id='edit-popup-date' type="date" required>
                     <select id="edit-popup-priority">
                         <option>Low</option>

@@ -1,6 +1,6 @@
-import { toDoArray } from "./create-todo";
-import { projectsArray } from "./create-projects";
-import { addViewTaskInfoEventListeners, currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
+import { toDoArray } from "./todo-data";
+import { projectsArray } from "./projects-data";
+import { addEditTaskCheckEventListeners, currentTab, addViewTaskInfoEventListeners, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
 
 
@@ -214,6 +214,7 @@ export function updateProjectData() {
     addRemoveProjectEventListeners()
     addDeleteTaskCheckEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 }
 
 export function updateCounters() {
@@ -242,6 +243,7 @@ export function allTasksTab() {
     updateProjectData()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 }
 
 export function todayTab() {
@@ -252,6 +254,7 @@ export function todayTab() {
     updateProjectData()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 }
 
 export function thisWeekTab() {
@@ -262,6 +265,7 @@ export function thisWeekTab() {
     updateProjectData()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
     
 }
 
@@ -272,6 +276,7 @@ export function projectTab(projectName) {
     updateProjectData()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
 }
 
 export function changeTab(tab) {
@@ -294,4 +299,14 @@ export function makeDetailOverlayInvisible() {
 export function makeDetailOverlayVisible() {
     const detailOverlay = document.querySelector('.overlay-details')
     detailOverlay.classList.remove('overlay-details-invisible')
+}
+
+export function makeEditOverlayInvisible() {
+    const editOverlay = document.querySelector('.overlay-edit')
+    editOverlay.classList.add('overlay-edit-invisible')
+}
+
+export function makeEditOverlayVisible() {
+    const editOverlay = document.querySelector('.overlay-edit')
+    editOverlay.classList.remove('overlay-edit-invisible')
 }

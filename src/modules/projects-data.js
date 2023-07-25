@@ -1,4 +1,3 @@
-import { compareAsc, format, parseISO, startOfToday } from "date-fns"
 import { resetProjectForm, updateCounterForEachProject, updateProjectData } from "./dom-manipulation"
 import { addRemoveProjectEventListeners } from ".."
 
