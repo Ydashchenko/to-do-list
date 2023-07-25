@@ -12,7 +12,7 @@ export function factoryToDo(id, title, description, dueDate, priority, project, 
 }
 
 export function blankToDosLoad() {
-    const myToDo1 = factoryToDo(0, 'Wash the dishes', 'Just wash the dishes lol', '2023-07-22', 'Medium', 'Chores', true)
+    const myToDo1 = factoryToDo(0, 'Wash the dishes', 'Just wash the dishes lol', '2023-07-23', 'Medium', 'Chores', true)
     toDoArray.push(myToDo1)
 
     const myToDo2 = factoryToDo(1, 'See the doctor', 'Have to know if you need this surgery', '2023-07-24', 'High', 'Health', false)

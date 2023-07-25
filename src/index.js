@@ -41,6 +41,7 @@ export function init() {
     addRemoveProjectEventListeners()
     addToggleTaskCheckEventListeners()
     addDeleteTaskCheckEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function addProjectEventListeners() {
@@ -136,6 +137,24 @@ export function deleteTask(event) {
     updateProjectData()
     updateCounters()
     addRemoveProjectEventListeners()
+}
+
+export function addViewTaskInfoEventListeners() {
+    const viewBtns = document.querySelectorAll('.task')
+    viewBtns.forEach((viewBtn) => { 
+        viewBtn.addEventListener('click', (event) => {
+            if (event.target.classList.contains('checkbox') || event.target.classList.contains('edit-task') || event.target.classList.contains('remove-task')) {
+                return
+            }
+
+            viewTask()
+        })
+    })
+}
+
+export function viewTask() {
+    console.log('viewTask click')
+    
 }
 
 export let currentTab = 'All tasks'
