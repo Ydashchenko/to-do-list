@@ -42,6 +42,7 @@ export function init() {
     addViewTaskInfoEventListeners()
     addToggleTaskCheckEventListeners()
     addDeleteTaskCheckEventListeners()
+    addCloseDetailOverlayEventListener()
     
 }
 
@@ -87,6 +88,7 @@ export function deleteProject(event) {
     updateCounterForEachProject()
     updateProjectData()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
 
     console.log("Here's toDoArray")
     console.log(toDoArray)
@@ -118,6 +120,7 @@ export function toggleTaskCheck(event) {
     updateCounters()
     addRemoveProjectEventListeners()
     addDeleteTaskCheckEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function addDeleteTaskCheckEventListeners() {
@@ -138,6 +141,7 @@ export function deleteTask(event) {
     updateProjectData()
     updateCounters()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function addViewTaskInfoEventListeners() {
@@ -158,13 +162,23 @@ export function viewTask() {
     let neededTask = toDoArray.find((task) => task.title === taskName)
     console.log(neededTask)
     document.querySelector('.details-popup-title').innerHTML = neededTask.title
-    document.querySelector('.details-popup-project').innerHTML = neededTask.project
+    if (neededTask.project === '') {
+        document.querySelector('.details-popup-project').innerHTML = '(No project)'
+    } else {
+        document.querySelector('.details-popup-project').innerHTML = neededTask.project
+    }
     document.querySelector('.details-popup-priority').innerHTML = neededTask.priority
     document.querySelector('.details-popup-duedate').innerHTML = neededTask.dueDate
     document.querySelector('.details-popup-details').innerHTML = neededTask.description
     document.querySelector('.details-popup-id').innerHTML = neededTask.id
     makeDetailOverlayVisible()
+    
+}
 
+export function addCloseDetailOverlayEventListener() {
+    const detailOverlayCloseButton = document.getElementById('details-popup-close')
+    console.log(detailOverlayCloseButton)
+    detailOverlayCloseButton.addEventListener('click', makeDetailOverlayInvisible)
 }
 
 export let currentTab = 'All tasks'

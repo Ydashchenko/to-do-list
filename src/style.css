@@ -367,9 +367,10 @@ h3, h2 {
     display: flex;
     flex-direction: column;
     min-width: 600px;  
+    max-width: 800px;
 }
 
-.details-popup-close {
+#details-popup-close {
     align-self: flex-end;
     font-size: 35px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -404,4 +405,8 @@ h3, h2 {
     backdrop-filter: blur(8px); /* Adjust the blur amount as needed */
     pointer-events: none; /* This ensures that clicks can still reach the content behind the blurred div */
     z-index: -1; /* Place the pseudo-element behind the content */
-  }
+}
+
+.details-popup-details {
+    max-height: 12rem;
+}

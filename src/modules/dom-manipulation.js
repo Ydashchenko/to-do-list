@@ -1,6 +1,6 @@
 import { toDoArray } from "./create-todo";
 import { projectsArray } from "./create-projects";
-import { currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
+import { addViewTaskInfoEventListeners, currentTab, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
 
 
@@ -213,7 +213,7 @@ export function updateProjectData() {
     addToggleTaskCheckEventListeners()
     addRemoveProjectEventListeners()
     addDeleteTaskCheckEventListeners()
-   
+    addViewTaskInfoEventListeners()
 }
 
 export function updateCounters() {
@@ -241,6 +241,7 @@ export function allTasksTab() {
     updateAllTasksTab()
     updateProjectData()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function todayTab() {
@@ -250,6 +251,7 @@ export function todayTab() {
     updateTodayTab()
     updateProjectData()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function thisWeekTab() {
@@ -259,6 +261,7 @@ export function thisWeekTab() {
     updateThisWeekTab()
     updateProjectData()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
     
 }
 
@@ -268,6 +271,7 @@ export function projectTab(projectName) {
     updateProjectTab(projectName)
     updateProjectData()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
 }
 
 export function changeTab(tab) {
