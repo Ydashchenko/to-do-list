@@ -199,7 +199,7 @@ h3, h2 {
     transition: 0.2s;
 }
 
-.add-button:hover, .project:hover, #first div:hover {
+.add-button:hover, .project:hover, #first div:hover, .edit-popup-close:hover {
     background-color: rgba(71, 61, 139, 0.12);
     transition: 0.2s;
 }
@@ -274,36 +274,6 @@ h3, h2 {
     justify-content: stretch;
 }
 
-#low {
-    border: 2px green solid;
-    color: green;
-}
-
-#low:hover {
-    background-color: green;
-    color: white;
-}
-
-#medium {
-    border: 2px rgb(255, 208, 0) solid;
-    color: rgb(255, 208, 0);
-}
-
-#medium:hover {
-    background-color: rgb(255, 208, 0);
-    color: white;
-}
-
-#high {
-    border: 2px red solid;
-    color: red;
-}
-
-#high:hover {
-    background-color: red;
-    color: white;
-}
-
 #priority option {
     font-weight: 500;
     border-radius: 5px;
@@ -331,7 +301,7 @@ h3, h2 {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.overlay-details {
+.overlay-details, .overlay-edit {
     z-index: 2;
     position: fixed;
     top: 0;
@@ -355,12 +325,14 @@ h3, h2 {
     transition: all .3s;
 }
 
-.overlay-details-invisible {
+
+
+.overlay-details-invisible, .overlay-edit-invisible {
     visibility: hidden;
     opacity: 0;
 }
 
-.details-popup{
+.details-popup, .edit-popup {
     background-color: rgb(254, 243, 227);
     box-shadow: 0px 5px 6px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -370,18 +342,35 @@ h3, h2 {
     max-width: 800px;
 }
 
-#details-popup-close {
+#details-popup-close, .edit-popup-close {
     align-self: flex-end;
     font-size: 35px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 0 10px;
 }
 
-.details-popup-content {
+.details-popup-content,#edit-popup-form {
     padding: 0 2rem 2rem 2rem;
-    font-size: 18px;
+    font-size: 20px;
     display: grid;
     gap: 3px;
+}
+
+#confirm-edit-task {
+    font-size: 20px;
+    padding: 2px 4px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+#confirm-edit-task:hover {
+    background-color: rgba(71, 61, 139, 0.12);
+    transition: 0.2s;
+}
+
+#edit-popup-row {
+    display: flex;
+    justify-content: space-around;
 }
 
 .details-popup-grid {

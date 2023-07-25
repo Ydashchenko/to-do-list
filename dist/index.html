@@ -37,6 +37,26 @@
         </div>
     </div>
 
+    <div class="overlay-edit">
+        <div class="edit-popup">
+            <div class="edit-popup-close">x</div>
+            <form id="edit-popup-form" method="post">
+                <textarea id="edit-popup-title" required></textarea>
+                <textarea id="edit-popup-details" cols="20" rows="5" required></textarea>
+                <div id="edit-popup-row">
+                    <input id='edit-popup-date' type="date" required>
+                    <select id="edit-popup-priority">
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                    <button id="confirm-edit-task" type="button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
     <header><img id='todo-logo' src="../src/images/white-check.png" alt="Todo list logo"> <h1>To-do List</h1></header>
     <main>
         <nav>
@@ -62,24 +82,7 @@
                     <h3>Projects</h3>
                     <p class="counter" id="project-counter"></p>
                 </div>
-                <div id="project-list">
-                    <!--
-                    <div class="project">
-                        <img class="project-logo" src="../src/images/project-logo.png" alt="Project Logo">
-                        <h4>Gym</h4>
-                        <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
-                        <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
-                        <p class="counter">1</p>
-                    </div>
-                    <div class="project">
-                        <img class="project-logo" src="../src/images/project-logo.png" alt="Project Logo">
-                        <h4>Chores</h4>
-                        <img class="edit-project" src="../src/images/edit-logo.png" alt="Edit logo">
-                        <img class="remove-project" src="../src/images/delete.png" alt="Delete logo">
-                        <p class="counter">20</p>
-                    </div>
-                    -->
-                </div>
+                <div id="project-list"></div>
                 <button class="add-button" id="add-project"><img src="../src/images/add-logo.png" alt="Add Logo"> Add Project</button>
                 
                 <form id="add-project-form" method="post">

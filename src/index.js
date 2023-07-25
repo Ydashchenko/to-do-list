@@ -37,13 +37,12 @@ export function init() {
     updateCounterForEachProject()
     updateAllTasksTab()
     updateProjectData()
-    //addProjectEventListeners()
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
     addToggleTaskCheckEventListeners()
     addDeleteTaskCheckEventListeners()
     addCloseDetailOverlayEventListener()
-    
+    addEditTaskCheckEventListeners()
 }
 
 export function addProjectEventListeners() {
@@ -173,6 +172,19 @@ export function viewTask() {
     document.querySelector('.details-popup-id').innerHTML = neededTask.id
     makeDetailOverlayVisible()
     
+}
+
+export function addEditTaskCheckEventListeners() {
+    const editBtns = document.querySelectorAll('.edit-task')
+    editBtns.forEach((editBtn) => {
+        editBtn.addEventListener('click', editTask)
+    })
+}
+
+export function editTask() {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    console.log('edit task')
 }
 
 export function addCloseDetailOverlayEventListener() {
