@@ -1,7 +1,7 @@
 import { blankProjectLoad, createProject, projectsArray } from './modules/create-projects';
 import { blankToDosLoad, toDoArray } from './modules/create-todo';
 import { createTodo } from './modules/create-todo';
-import { updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, changeTab} from './modules/dom-manipulation';
+import { makeDetailOverlayVisible, makeDetailOverlayInvisible, updateCounters, projectTab, displayTheToDoForm, displayTheProjectForm, updateProjectData, updateAllTasksTab, updateCounterForEachProject, allTasksTab, todayTab, thisWeekTab, changeTab} from './modules/dom-manipulation';
 import './style.css';
 
 init()
@@ -39,9 +39,10 @@ export function init() {
     updateProjectData()
     //addProjectEventListeners()
     addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
     addToggleTaskCheckEventListeners()
     addDeleteTaskCheckEventListeners()
-    addViewTaskInfoEventListeners()
+    
 }
 
 export function addProjectEventListeners() {
@@ -142,19 +143,28 @@ export function deleteTask(event) {
 export function addViewTaskInfoEventListeners() {
     const viewBtns = document.querySelectorAll('.task')
     viewBtns.forEach((viewBtn) => { 
-        viewBtn.addEventListener('click', (event) => {
-            if (event.target.classList.contains('checkbox') || event.target.classList.contains('edit-task') || event.target.classList.contains('remove-task')) {
+        viewBtn.addEventListener('click', (e) => {
+            if (e.target.classList.contains('checkbox') || e.target.classList.contains('edit-task') || e.target.classList.contains('remove-task')) {
                 return
             }
-
             viewTask()
         })
     })
 }
 
 export function viewTask() {
-    console.log('viewTask click')
-    
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    let neededTask = toDoArray.find((task) => task.title === taskName)
+    console.log(neededTask)
+    document.querySelector('.details-popup-title').innerHTML = neededTask.title
+    document.querySelector('.details-popup-project').innerHTML = neededTask.project
+    document.querySelector('.details-popup-priority').innerHTML = neededTask.priority
+    document.querySelector('.details-popup-duedate').innerHTML = neededTask.dueDate
+    document.querySelector('.details-popup-details').innerHTML = neededTask.description
+    document.querySelector('.details-popup-id').innerHTML = neededTask.id
+    makeDetailOverlayVisible()
+
 }
 
 export let currentTab = 'All tasks'

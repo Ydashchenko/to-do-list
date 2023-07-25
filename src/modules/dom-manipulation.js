@@ -281,3 +281,13 @@ export function changeTab(tab) {
         projectTab(tab)
     }
 }
+
+export function makeDetailOverlayInvisible() {
+    const detailOverlay = document.querySelector('.overlay-details')
+    detailOverlay.classList.add('overlay-details-invisible')
+}
+
+export function makeDetailOverlayVisible() {
+    const detailOverlay = document.querySelector('.overlay-details')
+    detailOverlay.classList.remove('overlay-details-invisible')
+}
