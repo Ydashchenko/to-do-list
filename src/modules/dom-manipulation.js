@@ -33,7 +33,6 @@ export function resetProjectForm() {
 export function updateCounterForEachProject() {
     for (let p in projectsArray) {
         let tempCounter = 0
-        console.log(projectsArray[p])
         for (let t in toDoArray) {
             if (toDoArray[t].project === projectsArray[p].projectTitle && toDoArray[t].done === false) {
                 tempCounter += 1
@@ -67,12 +66,8 @@ export function updateAllTasksTab() {
         <img class="remove-task" src="../src/images/delete.png" alt="Delete logo">
         `
         temp.classList.add(`${toDoArray[d].priority}-priority`)
-        // console.log(toDoArray[d].title)
-        // console.log(toDoArray[d].dueDate)
-        console.log(toDoArray[d].project)
         allTasks.appendChild(temp)
     }
-    console.log(toDoArray)
 }
 
 export function updateTodayTab() {
@@ -102,12 +97,8 @@ export function updateTodayTab() {
             `
             temp.classList.add(`${toDoArray[d].priority}-priority`)
             todayTasks.appendChild(temp)
-            console.log(todayTasks)
         }
     }
-    console.log('This is')
-    console.log(toDoArray)
-    
 }
 
 export function updateThisWeekTab() {
@@ -115,22 +106,7 @@ export function updateThisWeekTab() {
     thisWeekTasks.innerHTML = ''
     
     for (let d in toDoArray) {
-        /*
-        Date.prototype.GetFirstDayOfWeek = function() {
-            return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
-        }
-        Date.prototype.GetLastDayOfWeek = function() {
-            return (new Date(this.setDate(this.getDate() - this.getDay() +7)));
-        }
-        
-        var today = new Date();
-
-
-        if (date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek()){
-        */
         let date = new Date(`${toDoArray[d].dueDate}`)
-        //console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
-        
         if (isThisWeek(date)){
             let temp = document.createElement('div')
             let tempIfChecked = ''
@@ -213,7 +189,7 @@ export function updateProjectData() {
         tempO.innerHTML = projectsArray[o].projectTitle
         projectDropDown.appendChild(tempO)
     }
-    
+
     updateCounters()
     addProjectEventListeners()
     addToggleTaskCheckEventListeners()
@@ -236,7 +212,6 @@ export function updateCounters() {
   
     const thisWeekTasks = toDoArray.filter(task => isThisWeek(parseISO(task.dueDate)) && !task.done);
     thisWeekTasks.length === 0 ? thisWeekCounter.innerHTML = '' : thisWeekCounter.innerHTML = thisWeekTasks.length;
-
 }
 
 export function allTasksTab() {
@@ -319,7 +294,7 @@ export function viewTask() {
     const parent = event.target.closest('.task')
     let taskName = parent.querySelector('h4').innerHTML
     let neededTask = toDoArray.find((task) => task.title === taskName)
-    console.log(neededTask)
+    console.log(`Here's ${taskName} task.`)
     document.querySelector('.details-popup-title').innerHTML = neededTask.title
     if (neededTask.project === '') {
         document.querySelector('.details-popup-project').innerHTML = '(No project)'

@@ -9,8 +9,7 @@ export let currentTab = 'All tasks'
 init()
 
 function init() {
-    //blankProjectLoad()
-    //blankToDosLoad()
+    console.log(`Here's your own to do list app!`)
     updateCounterForEachProject()
     updateAllTasksTab()
     updateProjectData()

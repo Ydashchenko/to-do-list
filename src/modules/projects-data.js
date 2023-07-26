@@ -65,8 +65,8 @@ export const createProject = () => {
     }
 
     projectsArray.push(newProject)
-    console.log(projectsArray)
     
+    console.log(`A new project has been created.`)
     resetProjectForm()
     updateCounterForEachProject()
     updateProjectData()
@@ -83,10 +83,8 @@ export const createProject = () => {
 export function deleteProject() {
     const parent = event.target.closest('.project')
     let projectName = parent.querySelector('h4').innerHTML
-    console.log(projectName)
+
     const indexToDelete = projectsArray.findIndex((project) => project.projectTitle === projectName)
-    console.log(indexToDelete)
-    console.log(projectsArray)
 
     // Delete all tasks of this project
     toDoArray = toDoArray.filter((task) => task.project !== projectName)
@@ -95,6 +93,8 @@ export function deleteProject() {
     // Delete the project itself
     projectsArray.splice(indexToDelete, 1)
 
+
+    console.log(`The project and its tasks have been deleted.`)
     // Update data
     changeTab(currentTab)
     updateCounterForEachProject()
@@ -102,10 +102,6 @@ export function deleteProject() {
     addRemoveProjectEventListeners()
     addViewTaskInfoEventListeners()
     saveProjectArray()
-
-    console.log("Here's toDoArray")
-    console.log(toDoArray)
-    
 }
 
 export { projectsArray }

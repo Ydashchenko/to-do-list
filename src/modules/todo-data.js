@@ -53,7 +53,6 @@ export function blankToDosLoad() {
     const myToDo8 = factoryToDo(7, 'See friends', 'Spend some time with friends cuz your a hikka now', '2023-12-14', 'Medium' , '', true)
     defaultToDoArray.push(myToDo8)
 
-    console.log(`Here's some default tasks`)
     return { toDoArray, myToDo1, myToDo2, myToDo3, myToDo4, myToDo5, myToDo6, myToDo7, myToDo8 }
 }
 
@@ -95,8 +94,8 @@ export const createTodo = () => {
     }
 
     toDoArray.push(newToDo)
-    console.log(toDoArray)
     
+    console.log(`${title} task has been created!`)
     updateCounterForEachProject()
     updateProjectData()
     resetToDoForm()
@@ -116,15 +115,14 @@ export const createTodo = () => {
 
 export function confirmEditTask() {
     const neededId = document.getElementById('edit-popup-id').innerHTML
-    console.log(neededId)
-    console.log(document.querySelector('#edit-popup-title').innerHTML)
     let taskToEdit = toDoArray.find((task) => task.id == neededId)
-    console.log(taskToEdit)
+
     taskToEdit.title = document.querySelector('#edit-popup-title').value
     taskToEdit.description = document.querySelector('#edit-popup-details').value
     taskToEdit.dueDate = document.querySelector('#edit-popup-date').value
     taskToEdit.priority = document.querySelector('#edit-popup-priority').value
-    console.log(toDoArray)
+    
+    console.log(`The task has been edited!`)
     makeEditOverlayInvisible()
 
     updateCounterForEachProject()
@@ -140,14 +138,13 @@ export function confirmEditTask() {
     addViewTaskInfoEventListeners()
     addEditTaskCheckEventListeners()
     saveToDoArray()
-
 }
 
 export function toggleTaskCheck() {
     const parent = event.target.closest('.task')
     let taskName = parent.querySelector('h4').innerHTML
     const taskToUpdate = toDoArray.find((task) => task.title === taskName)
-    console.log(taskToUpdate)
+
     const taskId = taskToUpdate.id
     toDoArray.forEach((task) => {
         if (task.id === taskId) {
@@ -169,7 +166,8 @@ export function deleteTask() {
     const parent = event.target.closest('.task')
     let taskName = parent.querySelector('h4').innerHTML
     toDoArray = toDoArray.filter((task) => task.title !== taskName)
-    console.log(toDoArray)
+
+    console.log(`The task has been deleted!`)
     // Update all
     changeTab(currentTab)
     updateCounterForEachProject()
@@ -186,7 +184,6 @@ export function editTask() {
     const parent = event.target.closest('.task')
     let taskName = parent.querySelector('h4').innerHTML
     let neededTask = toDoArray.find((task) => task.title === taskName)
-    console.log(neededTask)
     document.querySelector('#edit-popup-title').value = neededTask.title
     document.querySelector('#edit-popup-details').value = neededTask.description
     document.querySelector('#edit-popup-date').value = neededTask.dueDate

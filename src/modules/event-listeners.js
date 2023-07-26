@@ -84,13 +84,11 @@ export function addEditTaskCheckEventListeners() {
 
 export function addCloseDetailOverlayEventListener() {
     const detailOverlayCloseButton = document.getElementById('details-popup-close')
-    console.log(detailOverlayCloseButton)
     detailOverlayCloseButton.addEventListener('click', makeDetailOverlayInvisible)
 }
 
 export function addCloseEditOverlayEventListener() {
     const editOverlayCloseButton = document.querySelector('.edit-popup-close')
-    console.log(editOverlayCloseButton)
     editOverlayCloseButton.addEventListener('click', makeEditOverlayInvisible)
 }
 
