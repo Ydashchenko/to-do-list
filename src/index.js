@@ -9,8 +9,8 @@ export let currentTab = 'All tasks'
 init()
 
 function init() {
-    blankProjectLoad()
-    blankToDosLoad()
+    //blankProjectLoad()
+    //blankToDosLoad()
     updateCounterForEachProject()
     updateAllTasksTab()
     updateProjectData()
