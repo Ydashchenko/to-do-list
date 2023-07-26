@@ -1,6 +1,7 @@
 import { parseISO, startOfToday } from "date-fns"
-import { makeEditOverlayInvisible, resetToDoForm, updateProjectData, updateCounterForEachProject, changeTab } from "./dom-manipulation"
-import { addEditTaskCheckEventListeners, addViewTaskInfoEventListeners, currentTab, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from ".."
+import { makeEditOverlayInvisible, makeEditOverlayVisible, resetToDoForm, updateProjectData, updateCounterForEachProject, changeTab, updateCounters } from "./dom-manipulation"
+import { addEditTaskCheckEventListeners, addViewTaskInfoEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "./event-listeners"
+import { currentTab } from ".."
 
 let toDoArray = []
 let idCounter = 7
@@ -109,6 +110,54 @@ export function confirmEditTask() {
 
 }
 
+export function toggleTaskCheck() {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    const taskToUpdate = toDoArray.find((task) => task.title === taskName)
+    console.log(taskToUpdate)
+    const taskId = taskToUpdate.id
+    toDoArray.forEach((task) => {
+        if (task.id === taskId) {
+            task.done = !task.done
+        }
+    })
+    // Update all
+    changeTab(currentTab)
+    updateCounterForEachProject()
+    updateProjectData()
+    updateCounters()
+    addRemoveProjectEventListeners()
+    addDeleteTaskCheckEventListeners()
+    addViewTaskInfoEventListeners()
+}
 
+export function deleteTask() {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    toDoArray = toDoArray.filter((task) => task.title !== taskName)
+    console.log(toDoArray)
+    // Update all
+    changeTab(currentTab)
+    updateCounterForEachProject()
+    updateProjectData()
+    updateCounters()
+    addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
+    addEditTaskCheckEventListeners()
+}
+
+
+export function editTask() {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    let neededTask = toDoArray.find((task) => task.title === taskName)
+    console.log(neededTask)
+    document.querySelector('#edit-popup-title').value = neededTask.title
+    document.querySelector('#edit-popup-details').value = neededTask.description
+    document.querySelector('#edit-popup-date').value = neededTask.dueDate
+    document.querySelector('#edit-popup-id').innerHTML = neededTask.id
+    document.querySelector('#edit-popup-priority').value = neededTask.priority
+    makeEditOverlayVisible()
+}
 
 export { toDoArray }

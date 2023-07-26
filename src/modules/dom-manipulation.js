@@ -1,7 +1,8 @@
 import { toDoArray } from "./todo-data";
 import { projectsArray } from "./projects-data";
-import { addEditTaskCheckEventListeners, currentTab, addViewTaskInfoEventListeners, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "..";
+import { addEditTaskCheckEventListeners, addViewTaskInfoEventListeners, addProjectEventListeners, addRemoveProjectEventListeners, addToggleTaskCheckEventListeners, addDeleteTaskCheckEventListeners } from "./event-listeners";
 import { parseISO, startOfDay, isToday, startOfWeek, isThisWeek, startOfMonth, isThisMonth } from 'date-fns'
+import { currentTab } from "..";
 
 
 
@@ -222,8 +223,6 @@ export function updateCounters() {
     const todayCounter = document.getElementById('today-counter');
     const thisWeekCounter = document.getElementById('this-week-counter');
   
-    const today = startOfDay(new Date());
-  
     const allTasks = toDoArray.filter(task => !task.done);
     allTasks.length === 0 ? allTasksCounter.innerHTML = '' : allTasksCounter.innerHTML = allTasks.length;
 
@@ -309,4 +308,23 @@ export function makeEditOverlayInvisible() {
 export function makeEditOverlayVisible() {
     const editOverlay = document.querySelector('.overlay-edit')
     editOverlay.classList.remove('overlay-edit-invisible')
+}
+
+export function viewTask() {
+    const parent = event.target.closest('.task')
+    let taskName = parent.querySelector('h4').innerHTML
+    let neededTask = toDoArray.find((task) => task.title === taskName)
+    console.log(neededTask)
+    document.querySelector('.details-popup-title').innerHTML = neededTask.title
+    if (neededTask.project === '') {
+        document.querySelector('.details-popup-project').innerHTML = '(No project)'
+    } else {
+        document.querySelector('.details-popup-project').innerHTML = neededTask.project
+    }
+    document.querySelector('.details-popup-priority').innerHTML = neededTask.priority
+    document.querySelector('.details-popup-duedate').innerHTML = neededTask.dueDate
+    document.querySelector('.details-popup-details').innerHTML = neededTask.description
+    document.querySelector('.details-popup-id').innerHTML = neededTask.id
+    makeDetailOverlayVisible()
+    
 }

@@ -1,5 +1,7 @@
-import { resetProjectForm, updateCounterForEachProject, updateProjectData } from "./dom-manipulation"
-import { addRemoveProjectEventListeners } from ".."
+import { resetProjectForm, updateCounterForEachProject, updateProjectData, changeTab } from "./dom-manipulation"
+import { toDoArray } from "./todo-data"
+import { addRemoveProjectEventListeners, addViewTaskInfoEventListeners } from "./event-listeners"
+import { currentTab } from ".."
 
 let projectsArray = []
 
@@ -48,5 +50,32 @@ export const createProject = () => {
 
 }
 
+
+export function deleteProject() {
+    const parent = event.target.closest('.project')
+    let projectName = parent.querySelector('h4').innerHTML
+    console.log(projectName)
+    const indexToDelete = projectsArray.findIndex((project) => project.projectTitle === projectName)
+    console.log(indexToDelete)
+    console.log(projectsArray)
+
+    // Delete all tasks of this project
+
+    toDoArray = toDoArray.filter((task) => task.project !== projectName)
+    console.log(projectsArray)
+    // Delete the project itself
+    projectsArray.splice(indexToDelete, 1)
+
+    // Update data
+    changeTab(currentTab)
+    updateCounterForEachProject()
+    updateProjectData()
+    addRemoveProjectEventListeners()
+    addViewTaskInfoEventListeners()
+
+    console.log("Here's toDoArray")
+    console.log(toDoArray)
+    
+}
 
 export { projectsArray }
