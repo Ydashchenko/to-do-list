@@ -115,6 +115,7 @@ export function updateThisWeekTab() {
     thisWeekTasks.innerHTML = ''
     
     for (let d in toDoArray) {
+        /*
         Date.prototype.GetFirstDayOfWeek = function() {
             return (new Date(this.setDate(this.getDate() - this.getDay()+ (this.getDay() == 0 ? -6:1) )));
         }
@@ -123,10 +124,14 @@ export function updateThisWeekTab() {
         }
         
         var today = new Date();
-        
-        let date = new Date(`${toDoArray[d].dueDate}`)
-        console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
+
+
         if (date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek()){
+        */
+        let date = new Date(`${toDoArray[d].dueDate}`)
+        //console.log(date >= today.GetFirstDayOfWeek() && date <= today.GetLastDayOfWeek())
+        
+        if (isThisWeek(date)){
             let temp = document.createElement('div')
             let tempIfChecked = ''
             if (toDoArray[d].done) {
