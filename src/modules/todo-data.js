@@ -13,7 +13,7 @@ let defaultToDoArray = []
 blankToDosLoad()
 
 let toDoArray = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TO_DO_ARRAY)) || defaultToDoArray
-let idCounter = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ID_COUNTER)) || -1
+let idCounter = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ID_COUNTER)) || defaultToDoArray.length-1
 
 
 export function saveToDoArray() {
@@ -109,6 +109,7 @@ export const createTodo = () => {
     addViewTaskInfoEventListeners()
     addEditTaskCheckEventListeners()
     saveToDoArray()
+    console.log(toDoArray)
 
     return { id, title, description, dueDate, priority, project, done, toDoArray, idCounter }
 }
