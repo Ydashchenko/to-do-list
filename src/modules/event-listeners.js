@@ -26,6 +26,20 @@ export function clickEventsModule() {
     const thisWeekTabButton = document.getElementById('this-week')
     thisWeekTabButton.addEventListener('click', thisWeekTab)
 
+    const toggleButton = document.getElementById("toggleNav");
+    const navbar = document.querySelector("nav");
+    const mainContainer = document.getElementById('main-container')
+  
+    toggleButton.addEventListener("click", function () {
+        if (navbar.style.display === "flex") {
+            navbar.style.display = "none";
+            mainContainer.style.display = 'block'
+        } else {
+            navbar.style.display = "flex";
+            mainContainer.style.display = 'none'
+        }
+    });
+
 }
 
 export function addProjectEventListeners() {
@@ -96,5 +110,4 @@ export function addConfirmEditEventListener() {
     const confirmEditButton = document.querySelector('#confirm-edit-task')
     confirmEditButton.addEventListener('click', confirmEditTask)
 }
-
 
