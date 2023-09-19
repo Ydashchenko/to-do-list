@@ -134,6 +134,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
 }
 
 footer  {
@@ -409,9 +410,9 @@ h3, h2 {
     font-size: 3rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
     #toggleNav {
-        display: block;
+        display: flex;
     }
 
     nav {
@@ -429,7 +430,9 @@ h3, h2 {
 
     header {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: space-around;
     }
+
+
 }
